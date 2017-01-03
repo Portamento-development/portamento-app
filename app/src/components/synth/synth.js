@@ -25,6 +25,26 @@ function controller() {
         {
             note: 'E3',
             keyCode: 68
+        },
+        {
+            note: 'F3',
+            keyCode: 70
+        },
+        {
+            note: 'G3',
+            keyCode: 71
+        },
+        {
+            note: 'A3',
+            keyCode: 72
+        },
+        {
+            note: 'B3',
+            keyCode: 74
+        },
+        {
+            note: 'C4',
+            keyCode: 75
         }
     ];
 
