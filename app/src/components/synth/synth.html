@@ -1,6 +1,13 @@
 <div id="Content" class="FullScreen">
 	<div id="Title">PolySynth</div>
 
+	<div>
+		<input type="radio" value="triangle" ng-model="waveForm" ng-change="$ctrl.synth.set({oscillator: {type: waveForm}})">
+		<input type="radio" value="pwm" ng-model="waveForm" ng-change="$ctrl.synth.set({oscillator: {type: waveForm}})">
+		<input type="radio" value="square" ng-model="waveForm" ng-change="$ctrl.synth.set({oscillator: {type: waveForm}})">
+		<input type="radio" value="sawtooth" ng-model="waveForm" ng-change="$ctrl.synth.set({oscillator: {type: waveForm}})">
+		{{waveForm}}
+	</div>
 	<div class="keyboard" ng-keydown="$ctrl.keyDown($event)" ng-keyup="$ctrl.keyUp($event)" tabindex="0">
 		<ul>
 			<li ng-repeat="note in $ctrl.notes" ng-mousedown="$ctrl.noteOn(note.note)" ng-mouseup="$ctrl.noteOff(note.note)">{{note.note}}</li>

@@ -34,6 +34,7 @@ function controller() {
     }).toMaster();
 
     this.noteOn = function(note) {
+        console.log(this.synth);
         this.synth.triggerAttack(note);
     };
 
@@ -52,5 +53,4 @@ function controller() {
         const note = this.notes.find(n => n.keyCode === $event.keyCode);
         this.noteOff(note.note);
     };
-
 }
