@@ -65,25 +65,36 @@ function controller() {
     //     // const prevNote = note;
     // }, notes, '4n');
 
-    // Tone.Transport.start();
+
     // this.sequence.start();
     // this.sequence.loop = 8;
     // this.sequence.loopEnd = '10s';
 
+
+    var noteNames = ['F#', 'E', 'C#', 'A'];
+
+    var loop = new Tone.Sequence(function(time, col){
+        var column = sequencematrix.matrix[col];
+        for (var i = 0; i < 4; i++) {
+            if (column[i] === 1) {
+                var vel = Math.random() * 0.5 + 0.5;
+                this.synth.triggerAttack(noteNames[i], time, vel);
+            }
+        }
+    }, [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], '16n');
+
+    Tone.Transport.start();
+
     nx.onload = function(){
         nx.colorize('#f5871f');
-        var matrix1 = angular.element('#matrix');
-        matrix1.col = 16;
-        matrix1.row = 4;
-        matrix1.init();
-        matrix1.draw();
+        // var sequencematrix = angular.element('#sequencematrix');
+        sequencematrix.col = 16;
+        sequencematrix.row = 4;
+        sequencematrix.height = 300;
+        sequencematrix.width = 300;
+        sequencematrix.init();
+        sequencematrix.draw();
     };
-
-    // var noteNames = ['F#', 'E', 'C#', 'A'];
-
-    // var loop = new Tone.Sequence(function(time, col){
-    //     var column = 
-    // });
 
     this.noteOn = function(note) {
         console.log(this.synth);
