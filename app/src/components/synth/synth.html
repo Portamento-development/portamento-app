@@ -2,11 +2,34 @@
 	<div id="Title">PolySynth</div>
 
 	<div>
-		<input type="radio" value="triangle" ng-model="waveForm" ng-change="$ctrl.synth.set({oscillator: {type: waveForm}})">
-		<input type="radio" value="pwm" ng-model="waveForm" ng-change="$ctrl.synth.set({oscillator: {type: waveForm}})">
-		<input type="radio" value="square" ng-model="waveForm" ng-change="$ctrl.synth.set({oscillator: {type: waveForm}})">
-		<input type="radio" value="sawtooth" ng-model="waveForm" ng-change="$ctrl.synth.set({oscillator: {type: waveForm}})">
-		{{waveForm}}
+			<input type="radio" value="pwm" ng-model="waveForm" ng-change="$ctrl.synth.set({oscillator: {type: waveForm}})">
+			<input type="radio" value="triangle" ng-model="waveForm" ng-change="$ctrl.synth.set({oscillator: {type: waveForm}})">
+			<input type="radio" value="square" ng-model="waveForm" ng-change="$ctrl.synth.set({oscillator: {type: waveForm}})">
+			<input type="radio" value="sawtooth" ng-model="waveForm" ng-change="$ctrl.synth.set({oscillator: {type: waveForm}})">
+			{{waveForm}}
+	</div>
+	<div>
+		<label>A</label>
+		<input type="range" min="0" max="10" ng-init="newAttack=0.1" step="0.1" ng-model="newAttack" ng-change="$ctrl.synth.set('envelope', {attack: newAttack})">{{newAttack}}
+		
+		<label>D</label>
+		<input type="range" min="0" max="10" ng-init="newDecay=0.2" step="0.1" ng-model="newDecay" ng-change="$ctrl.synth.set('envelope', {decay: newDecay})">{{newDecay}}
+		
+		<label>S</label>
+		<input type="range" min="0" max="1" ng-init="newSustain=1" step="0.1" ng-model="newSustain" ng-change="$ctrl.synth.set('envelope', {sustain: newSustain})">{{newSustain}}
+		
+		<label>R</label>
+		<input type="range" min="0" max="10" ng-init="newRelease=0.8" step="0.1" ng-model="newRelease" ng-change="$ctrl.synth.set('envelope', {release: newRelease})">{{newRelease}}
+	</div>
+	<!--<div>
+		<label>Filter Type: {{filterType}}</label>
+		<input type="radio" value="highpass" ng-model="filterType" ng-change="$ctrl.setFilter(10000, filterType)">
+		<input type="radio" value="lowpass" ng-model="filterType" ng-change="$ctrl.setFilter(10, filterType)">
+		<input type="radio" value="bandpass" ng-model="filterType" ng-change="$ctrl.setFilter(800, filterType)">
+	</div>-->
+	<div>
+		<label>Portamento</label>
+		<input type="range" min="0" max="2" ng-init="newPorta=0.2" step="0.1" ng-model="newPorta" ng-change="$ctrl.synth.set('portamento', newPorta)">{{newPorta}}
 	</div>
 	<div class="keyboard" ng-keydown="$ctrl.keyDown($event)" ng-keyup="$ctrl.keyUp($event)" tabindex="0">
 		<ul>

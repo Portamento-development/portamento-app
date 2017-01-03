@@ -42,6 +42,12 @@ function controller() {
         this.synth.triggerRelease(note);
     };
 
+    this.setFilter = function(freq, type) {
+        const filter = new Tone.Filter(freq, type);
+        this.synth['filter'] = filter;
+    };
+
+
     this.keyDown = function($event) {
         $event.preventDefault();
         const note = this.notes.find(n => n.keyCode === $event.keyCode);
