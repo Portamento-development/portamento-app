@@ -1,0 +1,9 @@
+<div id="Content" class="FullScreen">
+	<div id="Title">PolySynth</div>
+
+	<div class="keyboard" ng-keydown="$ctrl.keyDown($event)" ng-keyup="$ctrl.keyUp($event)" tabindex="0">
+		<ul>
+			<li ng-repeat="note in $ctrl.notes" ng-mousedown="$ctrl.noteOn(note.note)" ng-mouseup="$ctrl.noteOff(note.note)">{{note.note}}</li>
+		</ul>
+	</div>
+</div>
