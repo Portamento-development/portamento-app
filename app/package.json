@@ -11,13 +11,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tone": "^0.8.0",
     "angular": "^1.5.9",
     "angular-resource": "^1.6.1",
     "angular-ui-router": "^1.0.0-beta.3",
     "angular-ui-router-default": "0.0.6",
     "camelcase": "^4.0.0",
-    "ng-dialog": "^0.6.4"
+    "nexusui": "^1.0.8",
+    "ng-dialog": "^0.6.4",
+    "tone": "^0.8.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.9",
