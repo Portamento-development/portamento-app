@@ -1,6 +1,7 @@
 authService.$inject = ['tokenService', '$http', 'apiUrl'];
 
 export default function authService(tokenService, $http, apiUrl) {
+    let currentUser = '';
     const currentToken = tokenService.get();
     if (currentToken) {
         $http
@@ -13,6 +14,7 @@ export default function authService(tokenService, $http, apiUrl) {
             return $http.post(`${apiUrl}/auth/${endpoint}`, credentials)
                 .then(result => {
                     tokenService.set(result.data.token);
+                    return currentUser = result.data.username;
                 })
                 .catch(err => {
                     throw err.data;
@@ -28,6 +30,7 @@ export default function authService(tokenService, $http, apiUrl) {
             tokenService.remove();
         },
         signin: credential('signin'),
-        signup: credential('signup')
+        signup: credential('signup'),
+        currentUser
     };
 }

@@ -19,9 +19,21 @@ function controller(authService) {
             password: this.password
         };
         if (this.action === 'signup') {
-            authService.signup(this.credentials);
+            authService.signup(this.credentials)
+                .then(res => {
+                    this.currentUser = res;
+                })
+                .catch(err => {
+                    console.log('signup catch', err);
+                });
         } else if (this.action === 'signin') {
-            authService.signin(this.credentials);
+            authService.signin(this.credentials)
+                .then(res => {
+                    this.currentUser = res;
+                })
+                .catch(err => {
+                    console.log('signup catch', err);
+                });
         }
     };
 
