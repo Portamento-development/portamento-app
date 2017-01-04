@@ -1,12 +1,31 @@
 .keyboard {
     ul {
         list-style-type: none;
+        font-size: 0.7em;
+
         li {
-            width: 50px;
+            text-align: center;
+            width: 35px;
             height: 100px;
             border: 2px solid black;
             display: inline-block;
         }
+
+    }
+
+    li:nth-child(12n+2),
+    li:nth-child(12n+4),
+    li:nth-child(12n+7),
+    li:nth-child(12n+9),
+    li:nth-child(12n+11) {
+        background-color: black;
+        width: 20px;
+        color: white;
+    }
+
+    li:nth-child(12n+6),
+    li:nth-child(12n+13) {
+        border-left: none;
     }
 }
 
@@ -30,7 +49,6 @@
 .not-selected {
     background-color: rgba(255,0,0,.5);
 }
-
 
     // input[type=range] {
     //     -webkit-appearance: slider-vertical;
