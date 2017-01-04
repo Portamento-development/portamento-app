@@ -5,15 +5,13 @@ export default function routes($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
         name: 'home',
         url: '/',
+        resolve: {
+            userPatches: ['patchService', patchService => {
+                return patchService.getAll();
+            }]
+        }, 
         component: 'app'
     });
-
-    $stateProvider.state({
-        name: 'login',
-        url: '/login',
-        component: 'login'
-    });
-
 
     $urlRouterProvider.otherwise('/');
 }
