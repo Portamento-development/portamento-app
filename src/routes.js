@@ -8,10 +8,22 @@ export default function routes($stateProvider, $urlRouterProvider) {
         component: 'app'
     });
 
+    // $stateProvider.state({
+    //     name: 'login',
+    //     url: '/login',
+    //     component: 'login'
+    // });
+
     $stateProvider.state({
-        name: 'login',
-        url: '/login',
-        component: 'login'
+        name: 'users',
+        url: '/users',
+        resolve: {
+            user: ['authService', user => {
+                console.log('hi from routes.js. user:', user);
+                return user.currentUser;
+            }]
+        },
+        component: 'users'
     });
 
 

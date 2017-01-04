@@ -1,5 +1,6 @@
 <section>
     <h1>Portamento</h1>
+    <a ui-sref="users">User Profile</a>
     <div>
         <label>
             <input name="login" type="radio" ng-model="$ctrl.action" value="signin">
@@ -12,8 +13,8 @@
         <label>Username:</label>
         <input ng-model="$ctrl.username">
         <label>Password:</label>
-        <input ng-model="$ctrl.password">
+        <input type="password" ng-model="$ctrl.password">
         <button ng-click="$ctrl.login()">Submit</button>
-        <h4>Signed in as: {{ $ctrl.currentUser }}</h4>
+        <h4>Signed in as: {{ $ctrl.currentUser.username }}</h4>
     </div>
 </section>

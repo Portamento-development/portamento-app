@@ -21,6 +21,7 @@ function controller(authService) {
         if (this.action === 'signup') {
             authService.signup(this.credentials)
                 .then(res => {
+                    console.log('signed up as', res);
                     this.currentUser = res;
                 })
                 .catch(err => {
@@ -29,6 +30,7 @@ function controller(authService) {
         } else if (this.action === 'signin') {
             authService.signin(this.credentials)
                 .then(res => {
+                    console.log('signed in as', res);
                     this.currentUser = res;
                 })
                 .catch(err => {
