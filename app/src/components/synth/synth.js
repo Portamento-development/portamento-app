@@ -1,5 +1,5 @@
 import Tone from 'tone';
-import nx from 'nexusui';
+// import nx from 'nexusui';
 import template from './synth.html';
 import styles from './synth.scss';
 
@@ -71,31 +71,38 @@ function controller() {
     // this.sequence.loopEnd = '10s';
 
 
-    var noteNames = ['F#', 'E', 'C#', 'A'];
-    var sequencematrix = document.getElementById('sequencematrix'); //eslint-disable-line
+    // var noteNames = ['F#', 'E', 'C#', 'A'];
+    // const sequencematrix = [[0,0,0,1],[0,0,0,1],[0,0,0,1],[0,0,0,1]];
+    // var sequencematrix = document.getElementById('sequencematrix'); 
 
-    var loop = new Tone.Sequence(function(time, col){
-        var column = sequencematrix.matrix[col];
-        for (var i = 0; i < 4; i++) {
-            if (column[i] === 1) {
-                var vel = Math.random() * 0.5 + 0.5;
-                this.synth.triggerAttack(noteNames[i], time, vel);
-            }
-        }
-    }, [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], '16n');
+    var synth = this.synth;
+
+    var loop = new Tone.Sequence(function(time, col) {
+        console.log('loop running');
+        console.log('time', time);
+        console.log('col', col);
+        synth.triggerAttack(col);
+        // var column = sequencematrix[col];
+        // for (var i = 0; i < 4; i++) {
+        //     if (column[i] === 1) {
+        //         var vel = Math.random() * 0.5 + 0.5;
+        //         this.synth.triggerAttack(noteNames[i], time, vel);
+        //     }
+        // }
+    }, ['F#3', 'E3', 'C#3', 'A3'], '4n');
 
     Tone.Transport.start();
 
-    nx.onload = function(){
-        console.log('nx onload hit');
-        nx.colorize('#0F0');
-        sequencematrix.col = 16;
-        sequencematrix.row = 4;
-        sequencematrix.height = 300;
-        sequencematrix.width = 300;
-        sequencematrix.init();
-        sequencematrix.draw();
-    };
+    // nx.onload = function(){
+    //     console.log('nx onload hit');
+    //     nx.colorize('#0F0');
+    //     sequencematrix.col = 16;
+    //     sequencematrix.row = 4;
+    //     sequencematrix.height = 300;
+    //     sequencematrix.width = 300;
+    //     sequencematrix.init();
+    //     sequencematrix.draw();
+    // };
 
 
     this.startLoop = function() {
