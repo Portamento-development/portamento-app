@@ -1,5 +1,15 @@
 import template from './app.html';
 
 export default {
-    template
+    template,
+    bindings: {
+        userPatches: '<'
+    },
+    controller
 };
+
+function controller() {
+    this.$onInit = () => {
+        console.log(this.userPatches);
+    };
+}

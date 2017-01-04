@@ -5,12 +5,43 @@ import styles from './synth.scss';
 
 export default {
     template,
+    bindings: {
+        userPatches: '<'
+    },
     controller
 };
 
-controller.$inject = ['$window'];
 
-function controller() {
+controller.$inject = ['patchService'];
+
+function controller(patchService) {
+
+    // this.mockId = '586d6567c5e57c0e906ad3c9'; //Will's
+    this.mockId = '586bda97f5977d80498b0883'; //Andy's
+
+    this.patch = {
+        name: '',
+        settings: {
+            wave: 'sawtooth',
+            evelope: {
+                attack: .1,
+                decay: .5,
+                sustain: 1,
+                release: .5
+            },
+            portamento: .2
+        },
+    };
+
+    this.savePatch = () => {
+        if(this.patch._id) {
+            delete this.patch._id;
+        }
+        this.patch.userId = this.mockId;
+        console.log(this.patch);
+        patchService.add(this.patch);
+    };
+ 
     this.styles = styles;
 
     this.notes = [
