@@ -19,8 +19,16 @@ function controller() {
             keyCode: 65
         },
         {
+            note: 'C#3',
+            keyCode: 87
+        },
+        {
             note: 'D3',
             keyCode: 83
+        },
+        {
+            note: 'D#3',
+            keyCode: 69
         },
         {
             note: 'E3',
@@ -31,12 +39,24 @@ function controller() {
             keyCode: 70
         },
         {
+            note: 'F#3',
+            keyCode: 84
+        },
+        {
             note: 'G3',
             keyCode: 71
         },
         {
+            note: 'G#3',
+            keyCode: 89
+        },
+        {
             note: 'A3',
             keyCode: 72
+        },
+        {
+            note: 'A#3',
+            keyCode: 85
         },
         {
             note: 'B3',
@@ -45,6 +65,26 @@ function controller() {
         {
             note: 'C4',
             keyCode: 75
+        },
+        {
+            note: 'C#4',
+            keyCode: 79
+        },
+        {
+            note: 'D4',
+            keyCode: 76
+        },
+        {
+            note: 'D#4',
+            keyCode: 80
+        },
+        {
+            note: 'E4',
+            keyCode: 186
+        },
+        {
+            note: 'F4',
+            keyCode: 222
         }
     ];
 
@@ -53,8 +93,6 @@ function controller() {
             'partials': [0, 2, 3, 4],
         }
     }).toMaster();
-
-
 
     this.updateMatrix = function(col, row) {
         if(this.sequenceMatrix[col][row] === 1) this.sequenceMatrix[col][row] = 0;
@@ -90,6 +128,11 @@ function controller() {
 
     this.startLoop = function() {
         loop.start();
+    };
+
+    this.stopLoop = function() {
+        loop.stop();
+        this.synth.releaseAll();
     };
 
     this.noteOn = function(note) {

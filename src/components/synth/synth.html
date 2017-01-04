@@ -40,7 +40,9 @@
 		<ul class="column" ng-repeat="array in $ctrl.sequenceMatrix">
 			<div class="cell" ng-repeat="value in array track by $index" ng-click="$ctrl.updateMatrix($parent.$index, $index);">{{value}}</div>
 		</ul>
-		<button ng-click="$ctrl.startLoop()">Start</button>
+
+
+		<button ng-click="$ctrl.startLoop()">Start</button><button ng-click="$ctrl.stopLoop()">Stop</button>
 	</div>
 	
 </div>
