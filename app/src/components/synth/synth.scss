@@ -10,6 +10,27 @@
     }
 }
 
+.column {
+    display: inline-block;
+    padding: 0;
+    margin: 5px;
+}
+
+.cell {
+    height: 50px;
+    width: 50px;
+    margin-bottom: 5px;
+    background-color: rgba(255,0,0,.5);
+}
+
+.selected {
+    background-color: red; 
+};
+
+.not-selected {
+    background-color: rgba(255,0,0,.5);
+}
+
 
     // input[type=range] {
     //     -webkit-appearance: slider-vertical;
