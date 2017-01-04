@@ -1,4 +1,4 @@
-authService.$inject = ['tokenService, $http', 'apiUrl'];
+authService.$inject = ['tokenService', '$http', 'apiUrl'];
 
 export default function authService(tokenService, $http, apiUrl) {
     const currentToken = tokenService.get();

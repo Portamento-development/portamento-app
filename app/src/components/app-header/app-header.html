@@ -1,0 +1,18 @@
+<section>
+    <h1>Portamento</h1>
+    <div>
+        <label>
+            <input name="login" type="radio" ng-model="$ctrl.action" value="signin">
+            Sign in
+        </label>
+        <label>
+            <input name="login" type="radio" ng-model="$ctrl.action" value="signup">
+            Sign up
+        </label>
+        <label>Username:</label>
+        <input ng-model="$ctrl.username">
+        <label>Password:</label>
+        <input ng-model="$ctrl.password">
+        <button ng-click="$ctrl.login()">Submit</button>
+    </div>
+</section>
