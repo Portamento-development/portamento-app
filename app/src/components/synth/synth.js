@@ -78,7 +78,6 @@ function controller() {
     var synth = this.synth;
 
     var loop = new Tone.Sequence(function(time, col) {
-        console.log('loop running');
         console.log('time', time);
         console.log('col', col);
         synth.triggerAttack(col);
@@ -107,6 +106,11 @@ function controller() {
 
     this.startLoop = function() {
         loop.start();
+    };
+
+    this.stopLoop = function() {
+        loop.stop();
+        synth.releaseAll();
     };
 
     this.noteOn = function(note) {
