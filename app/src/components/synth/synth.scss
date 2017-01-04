@@ -1,0 +1,11 @@
+.keyboard {
+    ul {
+        list-style-type: none;
+        li {
+            width: 50px;
+            height: 100px;
+            border: 2px solid black;
+            display: inline-block;
+        }
+    }
+}
