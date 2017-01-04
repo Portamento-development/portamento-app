@@ -5,6 +5,9 @@ import styles from './synth.scss';
 
 export default {
     template,
+    bindings: {
+        userPatches: '<'
+    },
     controller
 };
 
@@ -13,7 +16,8 @@ controller.$inject = ['patchService'];
 
 function controller(patchService) {
 
-    this.mockId = '586d6567c5e57c0e906ad3c9';
+    // this.mockId = '586d6567c5e57c0e906ad3c9'; //Will's
+    this.mockId = '586bda97f5977d80498b0883'; //Andy's
 
     this.patch = {
         name: '',
@@ -30,6 +34,9 @@ function controller(patchService) {
     };
 
     this.savePatch = () => {
+        if(this.patch._id) {
+            delete this.patch._id;
+        }
         this.patch.userId = this.mockId;
         console.log(this.patch);
         patchService.add(this.patch);
