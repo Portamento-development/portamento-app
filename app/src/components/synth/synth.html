@@ -36,4 +36,8 @@
 			<li ng-repeat="note in $ctrl.notes" ng-mousedown="$ctrl.noteOn(note.note)" ng-mouseup="$ctrl.noteOff(note.note)">{{note.note}}</li>
 		</ul>
 	</div>
+	<div>
+		<button ng-click="$ctrl.startLoop()">Start</button>
+	</div>
+	<!--<canvas nx="matrix" id="sequencematrix"></canvas>-->
 </div>
