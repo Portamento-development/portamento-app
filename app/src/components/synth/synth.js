@@ -72,6 +72,7 @@ function controller() {
 
 
     var noteNames = ['F#', 'E', 'C#', 'A'];
+    var sequencematrix = document.getElementById('sequencematrix'); //eslint-disable-line
 
     var loop = new Tone.Sequence(function(time, col){
         var column = sequencematrix.matrix[col];
@@ -86,14 +87,19 @@ function controller() {
     Tone.Transport.start();
 
     nx.onload = function(){
-        nx.colorize('#f5871f');
-        // var sequencematrix = angular.element('#sequencematrix');
+        console.log('nx onload hit');
+        nx.colorize('#0F0');
         sequencematrix.col = 16;
         sequencematrix.row = 4;
         sequencematrix.height = 300;
         sequencematrix.width = 300;
         sequencematrix.init();
         sequencematrix.draw();
+    };
+
+
+    this.startLoop = function() {
+        loop.start();
     };
 
     this.noteOn = function(note) {
