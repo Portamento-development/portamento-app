@@ -135,7 +135,7 @@ function controller(patchService) {
         console.log('hit');
     };
 
-    this.sequenceMatrix = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];
+    this.sequenceMatrix = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1],[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1],[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1],[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];
 
     const notes = ['F#3', 'E3', 'C#3', 'A3'];
     let lastNote = null;
@@ -152,10 +152,17 @@ function controller(patchService) {
                 lastNote = notes[i];
             }
         }
-    }, [0, 1, 2, 3], '4n');
+    }, [0, 1, 2, 3], '16n');
 
     Tone.Transport.start();
+    
+    this.bpm = 120;
 
+    this.setBpm = function() {
+        Tone.Transport.bpm.value = this.bpm;
+    };
+
+    this.setBpm();
 
     this.startLoop = function() {
         loop.start();

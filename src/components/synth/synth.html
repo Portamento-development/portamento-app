@@ -48,6 +48,8 @@
 
 
 		<button ng-click="$ctrl.startLoop()">Start</button><button ng-click="$ctrl.stopLoop()">Stop</button>
+		<label>{{$ctrl.bpm}}</label>
+		<input type="range" min="65" max="200" ng-model="$ctrl.bpm" ng-change="$ctrl.setBpm()">
 	</div>
 	
 </div>
