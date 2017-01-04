@@ -128,7 +128,7 @@ function controller(patchService) {
     this.updateMatrix = function(col, row) {
         if(this.sequenceMatrix[col][row] === 1) this.sequenceMatrix[col][row] = 0;
         else this.sequenceMatrix[col][row] = 1;
-        console.log(this.sequenceMatrix);
+        // console.log(this.sequenceMatrix);
     };
 
     this.toggleSelect = function() {
@@ -167,7 +167,7 @@ function controller(patchService) {
     };
 
     this.noteOn = function(note) {
-        console.log(this.synth);
+        // console.log(this.synth);
         this.synth.triggerAttack(note);
     };
 
