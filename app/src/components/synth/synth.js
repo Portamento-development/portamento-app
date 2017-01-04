@@ -1,5 +1,5 @@
 import Tone from 'tone';
-import nx from 'nexusui';
+// import nx from 'nexusui';
 import template from './synth.html';
 import styles from './synth.scss';
 
@@ -54,46 +54,42 @@ function controller() {
         }
     }).toMaster();
 
-    // const notes = ['E3', 'D3', 'C3', 'D3', 'E3', 'E3', 'E3'];
-    // var counter = 0;
-
-    // this.sequence = new Tone.Sequence(function(notes) {
-    //     // if ( prevNote) this.synth.triggerRelease(prevNote);
-    //     console.log(notes[counter]);
-    //     counter++;
-    //     // this.synth.triggerAttack(note);
-    //     // const prevNote = note;
-    // }, notes, '4n');
 
 
-    // this.sequence.start();
-    // this.sequence.loop = 8;
-    // this.sequence.loopEnd = '10s';
+    this.updateMatrix = function(col, row) {
+        if(this.sequenceMatrix[col][row] === 1) this.sequenceMatrix[col][row] = 0;
+        else this.sequenceMatrix[col][row] = 1;
+        console.log(this.sequenceMatrix);
+    };
 
+    this.toggleSelect = function() {
+        console.log('hit');
+    };
 
-    var noteNames = ['F#', 'E', 'C#', 'A'];
+    this.sequenceMatrix = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];
 
-    var loop = new Tone.Sequence(function(time, col){
-        var column = sequencematrix.matrix[col];
-        for (var i = 0; i < 4; i++) {
-            if (column[i] === 1) {
+    const notes = ['F#3', 'E3', 'C#3', 'A3'];
+    let lastNote = null;
+
+    var loop = new Tone.Sequence((time, col) => {
+        if(lastNote) {
+            this.synth.triggerRelease(lastNote);
+        }
+        let column = this.sequenceMatrix[col];
+        for(var i = 0; i < column.length; i++) {
+            if(column[i] === 1) {
                 var vel = Math.random() * 0.5 + 0.5;
-                this.synth.triggerAttack(noteNames[i], time, vel);
+                this.synth.triggerAttack(notes[i], time, vel);
+                lastNote = notes[i];
             }
         }
-    }, [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], '16n');
+    }, [0, 1, 2, 3], '4n');
 
     Tone.Transport.start();
 
-    nx.onload = function(){
-        nx.colorize('#f5871f');
-        // var sequencematrix = angular.element('#sequencematrix');
-        sequencematrix.col = 16;
-        sequencematrix.row = 4;
-        sequencematrix.height = 300;
-        sequencematrix.width = 300;
-        sequencematrix.init();
-        sequencematrix.draw();
+
+    this.startLoop = function() {
+        loop.start();
     };
 
     this.noteOn = function(note) {
