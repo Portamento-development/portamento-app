@@ -8,9 +8,33 @@ export default {
     controller
 };
 
-controller.$inject = ['$window'];
 
-function controller() {
+controller.$inject = ['patchService'];
+
+function controller(patchService) {
+
+    this.mockId = '586d6567c5e57c0e906ad3c9';
+
+    this.patch = {
+        name: '',
+        settings: {
+            wave: 'sawtooth',
+            evelope: {
+                attack: .1,
+                decay: .5,
+                sustain: 1,
+                release: .5
+            },
+            portamento: .2
+        },
+    };
+
+    this.savePatch = () => {
+        this.patch.userId = this.mockId;
+        console.log(this.patch);
+        patchService.add(this.patch);
+    };
+ 
     this.styles = styles;
 
     this.notes = [
