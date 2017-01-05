@@ -18,8 +18,13 @@ controller.$inject = ['patchService', 'sequenceService', 'userService', '$window
 function controller(patchService, sequenceService, userService, $window) {
     const doc = $window.document;
 
-    //binds key events to document level
     this.$onInit = () => {
+        if(this.loadedPatch) {
+            this.patch = this.loadedPatch;
+            this.patchSaved = true;
+            console.log(this.patch);
+        }
+        //binds key events to document level
         doc.addEventListener('keydown', this.keyDownHandler);
         doc.addEventListener('keyup', this.keyUpHandler);
     };
@@ -50,7 +55,7 @@ function controller(patchService, sequenceService, userService, $window) {
         },
     };
 
-    this.$onInit = function() {
+  this.$onInit = function() {
         console.log(this.currentUser);
         if(this.loadedPatch) {
             this.patch = this.loadedPatch;
@@ -260,6 +265,10 @@ function controller(patchService, sequenceService, userService, $window) {
     this.setFilter = function(freq, type) {
         const filter = new Tone.Filter(freq, type);
         this.synth['filter'] = filter;
+    };
+
+    this.unFocus = function($event) {
+        $event.target.blur();
     };
 
     let fired = false;
