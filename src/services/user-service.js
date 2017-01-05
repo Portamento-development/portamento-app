@@ -9,6 +9,10 @@ export default function userService($http, apiUrl, authService) {
         getUserById(routeId) {
             return $http.get(`${apiUrl}/users/${routeId}`)
                 .then(res => res.data);
-        }    
+        },
+        updateUserPatches(userId, updatedUser) {
+            return $http.put(`${apiUrl}/users/${userId}`, updatedUser)
+                .then(res => res.data);
+        }  
     };
 }
