@@ -18,7 +18,8 @@ function controller(patchService, sequenceService, userService) {
     this.mockId = '586d6567c5e57c0e906ad3c9'; //Will's
     // this.mockId = '586bda97f5977d80498b0883'; //Andy's
     // this.mockId = '586d98b95a9cca386d70b9aa'; //Tom's'
-
+    
+    this.patchSaved = false;
     //load default patch if patch not resolved in state
     this.patch = {
         name: '',
@@ -37,6 +38,8 @@ function controller(patchService, sequenceService, userService) {
     this.$onInit = function() {
         if(this.loadedPatch) {
             this.patch = this.loadedPatch;
+            this.patchSaved = true;
+            console.log(this.patch);
         }
     };
     
@@ -65,6 +68,24 @@ function controller(patchService, sequenceService, userService) {
                 return user;
             })
             .then(user => userService.updateUserPatches(user._id, user));
+
+        this.patchSaved = true;
+    };
+
+    this.upVote = () => {
+        if(!this.patch.votes) this.patch.votes = 0;
+        this.patch.votes += 1;
+        patchService.update(this.patch._id, this.patch)
+            .then(res => console.log(res));
+    };
+
+    this.favorite = () => {
+        if(!this.patch.favorites) this.patch.favorites = 0;
+        this.patch.favorites += 1;
+        patchService.update(this.patch._id, this.patch)
+            .then(res => {
+                console.log(res);
+            });
     };
 
     
