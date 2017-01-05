@@ -161,18 +161,18 @@ function controller(patchService, sequenceService) {
     this.sequenceMatrix = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1],[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1],[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1],[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];
 
     const notes = ['F#3', 'E3', 'C#3', 'A3'];
-    let lastNote = null;
+    // let lastNote = null;
 
     var loop = new Tone.Sequence((time, col) => {
-        if(lastNote) {
-            this.synth.triggerRelease(lastNote);
-        }
+        // if(lastNote) {
+        this.synth.releaseAll();
+        // }
         let column = this.sequenceMatrix[col];
         for(var i = 0; i < column.length; i++) {
             if(column[i] === 1) {
                 var vel = Math.random() * 0.5 + 0.5;
                 this.synth.triggerAttack(notes[i], time, vel);
-                lastNote = notes[i];
+                // lastNote = notes[i];
             }
         }
     }, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], '16n');
