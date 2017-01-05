@@ -43,6 +43,9 @@ module.exports = {
             test: /\.css$/,
             loader: 'style!css-loader'
         }]
+    },
+    htmlLoader: {
+        attrs: false
     }
     // sassLoader: {
     //     includePaths: ['./src/scss/partials']
