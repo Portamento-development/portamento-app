@@ -7,6 +7,7 @@ export default {
     bindings: {
         currentUser: '<',
         userPatches: '<',
+        favPatches: '<',
         loadedPatch: '<'
     },
     controller
@@ -19,6 +20,15 @@ function controller(patchService, sequenceService, userService, $window) {
 
     //binds key events to document level
     this.$onInit = () => {
+        console.log('user patches', this.userPatches);
+
+        if(this.loadedPatch) {
+            this.patch = this.loadedPatch;
+            this.patchSaved = true;
+            console.log(this.patch);
+            this.loadSequence(this.patch._id);
+        }
+
         doc.addEventListener('keydown', this.keyDownHandler);
         doc.addEventListener('keyup', this.keyUpHandler);
     };
@@ -49,12 +59,18 @@ function controller(patchService, sequenceService, userService, $window) {
         },
     };
 
-    this.$onInit = function() {
-        if(this.loadedPatch) {
-            this.patch = this.loadedPatch;
-            this.patchSaved = true;
-            console.log(this.patch);
-        }
+    this.setSynth = () => {
+        this.synth.set({
+            oscillator: {type: this.patch.settings.wave},
+            envelope: {
+                attack: this.patch.settings.envelope.attack,
+                decay: this.patch.settings.envelope.decay,
+                sustain: this.patch.settings.envelope.sustain,
+                release: this.patch.settings.envelope.release
+            },
+            portamento: this.patch.settings.portamento
+        });
+        // this.loadSequence(this.patch._id);
     };
     
     this.savePatch = () => {
@@ -103,7 +119,7 @@ function controller(patchService, sequenceService, userService, $window) {
     };
 
     this.loadSequence = patchId => {
-        console.log('this is what gets passed in', patchId);
+        console.log('this.synth: ', this.synth);
         sequenceService.get(patchId)
             .then(res => {
                 this.sequenceMatrix = res.sequence;
