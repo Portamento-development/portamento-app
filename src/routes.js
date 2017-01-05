@@ -23,6 +23,11 @@ export default function routes($stateProvider, $urlRouterProvider) {
         name: 'patch',
         url: '/patch/:id',
         resolve: {
+            currentUser: ['authService', 'userService', (auth, user) => {
+                if(auth.isAuthenticated()) {
+                    return user.getCurrent();
+                }
+            }],
             loadedPatch: ['patchService', '$transition$', (patchService, t) => {
                 return patchService.get(t.params().id)
                     .then(patch => patch);

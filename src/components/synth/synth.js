@@ -6,7 +6,8 @@ export default {
     template,
     bindings: {
         userPatches: '<',
-        loadedPatch: '<'
+        loadedPatch: '<',
+        currentUser: '<'
     },
     controller
 };
@@ -49,6 +50,7 @@ function controller(patchService, sequenceService, userService, $window) {
     };
 
     this.$onInit = function() {
+        console.log(this.currentUser);
         if(this.loadedPatch) {
             this.patch = this.loadedPatch;
             this.patchSaved = true;
@@ -80,7 +82,7 @@ function controller(patchService, sequenceService, userService, $window) {
                 user.patchId.push(this.patchId);
                 return user;
             })
-            .then(user => userService.updateUserPatches(user._id, user));
+            .then(user => userService.updateUser(user._id, user));
 
         this.patchSaved = true;
     };
@@ -96,8 +98,13 @@ function controller(patchService, sequenceService, userService, $window) {
         if(!this.patch.favorites) this.patch.favorites = 0;
         this.patch.favorites += 1;
         patchService.update(this.patch._id, this.patch)
-            .then(res => {
-                console.log(res);
+            .then(() => {
+                userService.getUserById(this.currentUser.id)
+                    .then(user => {
+                        user.favoriteId.push(this.patch._id);
+                        console.log('user', user);
+                        userService.updateUser(this.currentUser.id, user);
+                    });
             });
     };
 
