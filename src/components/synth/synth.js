@@ -11,9 +11,21 @@ export default {
 };
 
 
-controller.$inject = ['patchService', 'sequenceService'];
+controller.$inject = ['patchService', 'sequenceService', '$window'];
 
-function controller(patchService, sequenceService) {
+function controller(patchService, sequenceService, $window) {
+    //binds key events
+    const doc = $window.document;
+
+    this.$onInit = () => {
+        doc.addEventListener('keydown', this.keyDownHandler);
+        doc.addEventListener('keyup', this.keyUpHandler);
+    };
+
+    this.$onDestroy = () => {
+        doc.removeEventListener('keydown', this.keyDownHandler);
+        doc.removeEventListener('keyup', this.keyUpHandler);
+    };
 
     // this.mockId = '586d6567c5e57c0e906ad3c9'; //Will's
     // this.mockId = '586bda97f5977d80498b0883'; //Andy's
@@ -211,16 +223,26 @@ function controller(patchService, sequenceService) {
         this.synth['filter'] = filter;
     };
 
+    let fired = false;
     this.keyDown = function($event) {
-        $event.preventDefault();
-        const note = this.notes.find(n => n.keyCode === $event.keyCode);
-        this.noteOn(note.note);
+        if ($event.target.tagName.toLowerCase() === 'input') return;
+        if (!fired) {
+            fired = true;
+            $event.preventDefault();
+            const note = this.notes.find(n => n.keyCode === $event.keyCode);
+            this.noteOn(note.note);
+        }
+
     };
 
     this.keyUp = function($event) {
+        fired = false;
         $event.preventDefault();
+        //following line works
         const note = this.notes.find(n => n.keyCode === $event.keyCode);
         this.noteOff(note.note);
     };
 
+    this.keyDownHandler = this.keyDown.bind(this);
+    this.keyUpHandler = this.keyUp.bind(this);
 }
