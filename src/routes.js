@@ -21,7 +21,7 @@ export default function routes($stateProvider, $urlRouterProvider) {
 
     $stateProvider.state({
         name: 'patch',
-        url: '/:id',
+        url: '/patch/:id',
         resolve: {
             loadedPatch: ['patchService', '$transition$', (patchService, t) => {
                 return patchService.get(t.params().id)
