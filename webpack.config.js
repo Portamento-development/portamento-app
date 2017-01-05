@@ -14,7 +14,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
-        // new ExtractTextPlugin('styles.css'),
+        new ExtractTextPlugin('main.css'),
         new CopyWebpackPlugin([{from: './images', to: 'images'}],
         {copyUnmodified: true}
         )],
@@ -46,8 +46,8 @@ module.exports = {
     },
     htmlLoader: {
         attrs: false
+    },
+    sassLoader: {
+        includePaths: ['./src/scss/partials']
     }
-    // sassLoader: {
-    //     includePaths: ['./src/scss/partials']
-    // }
 };

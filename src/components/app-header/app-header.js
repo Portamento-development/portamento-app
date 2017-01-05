@@ -13,7 +13,7 @@ controller.$inject = ['authService'];
 
 function controller(authService) {
     this.styles = styles;
-    this.action = 'signup';
+    this.action = 'signin';
 
     this.login = () => {
         this.credentials = {
@@ -38,7 +38,13 @@ function controller(authService) {
                 .catch(err => {
                     console.log('signup catch', err);
                 });
-        }
+        } 
+    };
+
+    this.logout = () => {
+        console.log('logging out');
+        authService.logout();
+        this.currentUser = null;
     };
 
 }

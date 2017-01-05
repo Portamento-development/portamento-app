@@ -5,6 +5,7 @@ import services from './services';
 import routes from './routes';
 import routeDefault from 'angular-ui-router-default';
 import http from './http';
+import './scss/main.scss';
 
 const app = angular.module('myApp', [
     components,
