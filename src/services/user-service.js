@@ -18,7 +18,7 @@ export default function userService($http, apiUrl, $window) {
             return $http.get(`${apiUrl}/users/${routeId}`)
                 .then(res => res.data);
         },
-        updateUserPatches(userId, updatedUser) {
+        updateUser(userId, updatedUser) {
             return $http.put(`${apiUrl}/users/${userId}`, updatedUser);
         },
         getByFollowed() {
