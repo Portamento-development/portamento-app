@@ -8,14 +8,31 @@ export default function routes($stateProvider, $urlRouterProvider) {
         resolve: {
             userPatches: ['patchService', patchService => {
                 return patchService.getAll();
+                //TODO: once we resolve user data in the home state we need to chenage this get all to a get by ID
             }]
         }, 
         component: 'synth'
     });
 
     $stateProvider.state({
+        name: 'patch',
+        url: '/:id',
+        resolve: {
+            loadedPatch: ['patchService', '$transition$', (patchService, t) => {
+                return patchService.get(t.params().id)
+                    .then(patch => patch);
+            }],
+            userPatches: ['patchService', patchService => {
+                return patchService.getAll();
+                //TODO: once we resolve user data in the home state we need to chenage this get all to a get by ID
+            }]
+        },
+        component: 'synth'
+    });
+
+    $stateProvider.state({
         name: 'about',
-        url: '/',
+        url: '/about',
         component: 'about'
     });
 

@@ -10,8 +10,12 @@ export default function patchService($http, apiUrl) {
                 });
         },
         get(patchId) {
+            console.log('in patch service');
             return $http.get(`${apiUrl}/patchs/${patchId}`)
-                .then(res => res.data);
+                .then(res => {
+                    console.log(res.data);
+                    return res.data;
+                });
         },
         getByVotes() {
             return $http.get(`${apiUrl}/patchs/votes`)

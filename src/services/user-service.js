@@ -10,6 +10,10 @@ export default function userService($http, apiUrl, authService) {
             return $http.get(`${apiUrl}/users/${routeId}`)
                 .then(res => res.data);
         },
+
+        updateUserPatches(userId, updatedUser) {
+            return $http.put(`${apiUrl}/users/${userId}`, updatedUser)
+        },
         getByFollowed() {
             return $http.get(`${apiUrl}/users/followed`)
                 .then(res => res.data);
