@@ -1,6 +1,6 @@
-authService.$inject = ['tokenService', '$http', 'apiUrl', '$state', '$window'];
+authService.$inject = ['userService', 'tokenService', '$http', 'apiUrl', '$state', '$window'];
 
-export default function authService(tokenService, $http, apiUrl, $state, $window) {
+export default function authService(userService, tokenService, $http, apiUrl, $state, $window) {
 
     let currentUser = null;
     const currentToken = tokenService.get();
@@ -40,9 +40,8 @@ export default function authService(tokenService, $http, apiUrl, $state, $window
         },
         logout() {
             currentUser = null;
-            tokenService.remove();
+            userService.logout();
             $state.go('home');
-            return currentUser;
         },
         signin: credential('signin'),
         signup: credential('signup'),

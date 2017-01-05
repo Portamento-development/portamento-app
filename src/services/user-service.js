@@ -1,6 +1,6 @@
-userService.$inject = ['$http', 'apiUrl', 'authService', '$window'];
+userService.$inject = ['$http', 'apiUrl', '$window'];
 
-export default function userService($http, apiUrl, authService, $window) {
+export default function userService($http, apiUrl, $window) {
 
     return {
         getCurrent() {
@@ -10,11 +10,9 @@ export default function userService($http, apiUrl, authService, $window) {
             return currentUser;
         },
         logout() {
-            let currentUser = null;
             $window.localStorage.removeItem('id');
             $window.localStorage.removeItem('username');
             $window.localStorage.removeItem('token');
-            return currentUser;
         },
         getUserById(routeId) {
             return $http.get(`${apiUrl}/users/${routeId}`)
