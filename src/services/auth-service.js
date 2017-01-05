@@ -1,24 +1,34 @@
-authService.$inject = ['tokenService', '$http', 'apiUrl', '$state'];
+authService.$inject = ['userService', 'tokenService', '$http', 'apiUrl', '$state', '$window'];
 
-export default function authService(tokenService, $http, apiUrl, $state) {
+export default function authService(userService, tokenService, $http, apiUrl, $state, $window) {
+
     let currentUser = null;
     const currentToken = tokenService.get();
     if (currentToken) {
         $http
             .get(`${apiUrl}/auth/verify`)
-            .catch(() => tokenService.remove());
+            .catch(() => {
+                tokenService.remove;
+                $window.localStorage.removeItem('id');
+                $window.localStorage.removeItem('username');
+            });
     }
 
     const credential = endpoint => {
         return (credentials) => {
             return $http.post(`${apiUrl}/auth/${endpoint}`, credentials)
                 .then(result => {
+                    currentUser = {};
+                    $window.localStorage.setItem('id', result.data.id);
+                    $window.localStorage.setItem('username', result.data.username);
                     tokenService.set(result.data.token);
-                    console.log('hi from the authService, here is result.data', result.data);
-                    currentUser = result.data;
+                    currentUser.id = result.data.id;
+                    currentUser.username = result.data.username;
+                    console.log(currentUser);
                     return currentUser;
                 })
                 .catch(err => {
+                    console.log('catch', err);
                     throw err.data;
                 });
         };
@@ -30,9 +40,8 @@ export default function authService(tokenService, $http, apiUrl, $state) {
         },
         logout() {
             currentUser = null;
-            tokenService.remove();
+            userService.logout();
             $state.go('home');
-            return currentUser;
         },
         signin: credential('signin'),
         signup: credential('signup'),

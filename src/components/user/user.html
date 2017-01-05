@@ -1,21 +1,16 @@
-<h1>User Profile</h1>
-<section>
-    <h2>Username: {{$ctrl.userData.username}}</h2>
+<section ng-class="$ctrl.styles.user">
+    <h1>User Profile: {{$ctrl.userData.username}}</h1>
     <div>
-        <h2>Patches</h2>
-        <ul>    
+        <ul>
+            <h3>Patches</h3> 
             <li ng-repeat="patch in $ctrl.userData.patchId" ui-sref="patch({id: patch._id})">{{patch.name}}</li>
         </ul>
-    </div>
-    <div>
-        <h2>Users Followed</h2>
-        <ul>    
+        <ul>
+            <h3>Users Followed</h3>
             <li ng-repeat="user in $ctrl.userData.followingId">{{user.username}}</li>
         </ul>
-    </div>
-    <div>
-        <h2>Favorite Patches</h2>
-        <ul>    
+        <ul>
+            <h3>Favorite Patches</h3>
             <li ng-repeat="fav in $ctrl.userData.favoriteId">{{fav.name}}</li>
         </ul>
     </div>

@@ -1,0 +1,19 @@
+:local(.social) {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    div {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    ul {
+        list-style: none;
+        text-align: left;
+        padding-left: 0;
+        margin: 0;
+    }
+
+}

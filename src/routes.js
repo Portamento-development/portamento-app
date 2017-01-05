@@ -6,6 +6,11 @@ export default function routes($stateProvider, $urlRouterProvider) {
         name: 'home',
         url: '/',
         resolve: {
+            currentUser: ['authService', 'userService', (auth, user) => {
+                if(auth.isAuthenticated()) {
+                    return user.getCurrent();
+                }
+            }],
             userPatches: ['patchService', patchService => {
                 return patchService.getAll();
                 //TODO: once we resolve user data in the home state we need to chenage this get all to a get by ID
@@ -40,9 +45,10 @@ export default function routes($stateProvider, $urlRouterProvider) {
         name: 'user',
         url: '/user/:id',
         resolve: {
-            user: ['authService', user => {
-                console.log('hi from routes.js. user:', user);
-                return user.currentUser;
+            currentUser: ['authService', 'userService', (auth, user) => {
+                if(auth.isAuthenticated()) {
+                    return user.getCurrent();
+                }
             }],
             userData: ['userService', '$transition$', (userService, t) => {
                 return userService.getUserById(t.params().id);

@@ -1,21 +1,23 @@
-<h1>Social Profile</h1>
-<section>
+<section ng-class="$ctrl.styles.social">
+    <h1>Social Profile</h1>
     <div>
-    <div>
-        <h2>Liked Patches</h2>
         <ul>    
+
+            <h3>Liked Patches</h3>
             <li ng-repeat="votes in $ctrl.votes" ui-sref="patch({id: votes._id})">{{votes.name}}</li>
+
         </ul>
-    </div>
-        <h2>Favorite Patches</h2>
         <ul>    
+
+            <h3>Favorite Patches</h3>
             <li ng-repeat="favs in $ctrl.favs" ui-sref="patch({id: favs._id})">{{favs.name}}</li>
+            
         </ul>
-    </div>
-    <div>
-        <h2>Most Follows</h2>
         <ul>    
+
+            <h3>Most Follows</h3>
             <li ng-repeat="user in $ctrl.userFollows" ui-sref="user({id: user._id})">{{user.username}}</li>
+            
         </ul>
     </div>
 </section>

@@ -1,9 +1,9 @@
-:local(.user) {
+:local(.about) {
     display: flex;
     flex-direction: column;
     text-align: center;
 
-    div {
+    #bios {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
@@ -11,9 +11,23 @@
 
     ul {
         list-style: none;
-        text-align: left;
         padding-left: 0;
         margin: 0;
+
+        li {
+            flex-basis: 8em;
+            padding: 0.5em;
+
+        }
+    }
+
+    img {
+        width: 80px;
+    }
+
+    p {
+        font-size: 0.8em;
+        text-align: left;
     }
 
 }
