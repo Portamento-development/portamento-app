@@ -7,8 +7,7 @@ export default {
     bindings: {
         currentUser: '<',
         userPatches: '<',
-        loadedPatch: '<',
-        currentUser: '<'
+        loadedPatch: '<'
     },
     controller
 };
@@ -18,16 +17,6 @@ controller.$inject = ['patchService', 'sequenceService', 'userService', '$window
 function controller(patchService, sequenceService, userService, $window) {
     const doc = $window.document;
 
-    this.$onInit = () => {
-        if(this.loadedPatch) {
-            this.patch = this.loadedPatch;
-            this.patchSaved = true;
-            console.log(this.patch);
-        }
-        //binds key events to document level
-        doc.addEventListener('keydown', this.keyDownHandler);
-        doc.addEventListener('keyup', this.keyUpHandler);
-    };
   
     //destroys key events so they don't repeat each time component reused
     this.$onDestroy = () => {
@@ -55,15 +44,6 @@ function controller(patchService, sequenceService, userService, $window) {
         },
     };
 
-  this.$onInit = function() {
-        console.log(this.currentUser);
-        if(this.loadedPatch) {
-            this.patch = this.loadedPatch;
-            this.patchSaved = true;
-            console.log(this.patch);
-        }
-    };
-    
     this.savePatch = () => {
         if(this.patch._id) {
             delete this.patch._id;
@@ -91,6 +71,17 @@ function controller(patchService, sequenceService, userService, $window) {
             .then(user => userService.updateUser(user._id, user));
 
         this.patchSaved = true;
+    };
+    
+    this.$onInit = () => {
+        if(this.loadedPatch) {
+            this.patch = this.loadedPatch;
+            this.patchSaved = true;
+            console.log(this.patch);
+        }
+        //binds key events to document level
+        doc.addEventListener('keydown', this.keyDownHandler);
+        doc.addEventListener('keyup', this.keyUpHandler);
     };
 
     this.upVote = () => {
