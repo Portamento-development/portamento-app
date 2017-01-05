@@ -11,10 +11,23 @@ export default {
     controller
 };
 
+controller.$inject = ['patchService', 'sequenceService', 'userService', '$window'];
 
-controller.$inject = ['patchService', 'sequenceService', 'userService'];
+function controller(patchService, sequenceService, userService, $window) {
+    const doc = $window.document;
 
-function controller(patchService, sequenceService, userService) {
+    //binds key events to document level
+    this.$onInit = () => {
+        doc.addEventListener('keydown', this.keyDownHandler);
+        doc.addEventListener('keyup', this.keyUpHandler);
+    };
+  
+    //destroys key events so they don't repeat each time component reused
+    this.$onDestroy = () => {
+        doc.removeEventListener('keydown', this.keyDownHandler);
+        doc.removeEventListener('keyup', this.keyUpHandler);
+    };
+  
     this.mockId = '586d6567c5e57c0e906ad3c9'; //Will's
     // this.mockId = '586bda97f5977d80498b0883'; //Andy's
     // this.mockId = '586d98b95a9cca386d70b9aa'; //Tom's'
@@ -222,16 +235,25 @@ function controller(patchService, sequenceService, userService) {
         this.synth['filter'] = filter;
     };
 
+    let fired = false;
     this.keyDown = function($event) {
-        $event.preventDefault();
-        const note = this.notes.find(n => n.keyCode === $event.keyCode);
-        this.noteOn(note.note);
+        if ($event.target.tagName.toLowerCase() === 'input') return;
+        if (!fired) {
+            fired = true;
+            $event.preventDefault();
+            const note = this.notes.find(n => n.keyCode === $event.keyCode);
+            this.noteOn(note.note);
+        }
     };
 
     this.keyUp = function($event) {
+        fired = false;
         $event.preventDefault();
+        //following line works
         const note = this.notes.find(n => n.keyCode === $event.keyCode);
         this.noteOff(note.note);
     };
 
+    this.keyDownHandler = this.keyDown.bind(this);
+    this.keyUpHandler = this.keyUp.bind(this);
 }

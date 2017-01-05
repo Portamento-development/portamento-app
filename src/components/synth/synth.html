@@ -37,7 +37,7 @@
 		<label>Portamento</label>
 		<input type="range" min="0" max="2" step="0.1" ng-model="$ctrl.patch.settings.portamento" ng-change="$ctrl.synth.set('portamento', $ctrl.patch.settings.portamento)">{{$ctrl.patch.settings.portamento}}
 	</div>
-	<div class="keyboard" ng-keydown="$ctrl.keyDown($event)" ng-keyup="$ctrl.keyUp($event)" tabindex="0">
+	<div class="keyboard">
 		<ul>
 			<li ng-repeat="note in $ctrl.notes" ng-mousedown="$ctrl.noteOn(note.note)" ng-mouseup="$ctrl.noteOff(note.note)">{{note.note}}</li>
 		</ul>
