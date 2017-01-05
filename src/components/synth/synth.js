@@ -5,6 +5,7 @@ import styles from './synth.scss';
 export default {
     template,
     bindings: {
+        currentUser: '<',
         userPatches: '<',
         loadedPatch: '<'
     },
@@ -28,7 +29,7 @@ function controller(patchService, sequenceService, userService, $window) {
         doc.removeEventListener('keyup', this.keyUpHandler);
     };
   
-    this.mockId = '586d6567c5e57c0e906ad3c9'; //Will's
+    // this.mockId = '586d6567c5e57c0e906ad3c9'; //Will's
     // this.mockId = '586bda97f5977d80498b0883'; //Andy's
     // this.mockId = '586d98b95a9cca386d70b9aa'; //Tom's'
     
@@ -60,7 +61,7 @@ function controller(patchService, sequenceService, userService, $window) {
         if(this.patch._id) {
             delete this.patch._id;
         }
-        this.patch.userId = this.mockId;
+        this.patch.userId = this.currentUser.id;
         patchService.add(this.patch)
             .then(res => {
                 this.patchId = res._id;
@@ -75,7 +76,7 @@ function controller(patchService, sequenceService, userService, $window) {
                 };
                 sequenceService.add(currSequence);
             })
-            .then(() => userService.getUserById(this.mockId))
+            .then(() => userService.getUserById(this.currentUser.id))
             .then(user => {
                 user.patchId.push(this.patchId);
                 return user;
@@ -100,8 +101,6 @@ function controller(patchService, sequenceService, userService, $window) {
                 console.log(res);
             });
     };
-
-    
 
     this.loadSequence = patchId => {
         console.log('this is what gets passed in', patchId);
