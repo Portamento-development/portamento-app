@@ -1,0 +1,21 @@
+<h1>Social Profile</h1>
+<section>
+    <div>
+    <div>
+        <h2>Liked Patches</h2>
+        <ul>    
+            <li ng-repeat="votes in $ctrl.votes">{{votes.name}}</li>
+        </ul>
+    </div>
+        <h2>Favorite Patches</h2>
+        <ul>    
+            <li ng-repeat="favs in $ctrl.favs">{{favs.name}}</li>
+        </ul>
+    </div>
+    <div>
+        <h2>Most Follows</h2>
+        <ul>    
+            <li ng-repeat="user in $ctrl.userFollows">{{user.username}}</li>
+        </ul>
+    </div>
+</section>
