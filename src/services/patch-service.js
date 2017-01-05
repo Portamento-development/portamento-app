@@ -5,7 +5,7 @@ export default function patchService($http, apiUrl) {
         getAll() {
             return $http.get(`${apiUrl}/patchs`)
                 .then(res => {
-                    // console.log('getAll response: ', res);
+                    console.log('getAll response: ', res);
                     return res.data;
                 });
         },
