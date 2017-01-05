@@ -9,6 +9,10 @@ export default function userService($http, apiUrl, authService) {
         getUserById(routeId) {
             return $http.get(`${apiUrl}/users/${routeId}`)
                 .then(res => res.data);
-        }    
+        },
+        getByFollowed() {
+            return $http.get(`${apiUrl}/users/followed`)
+                .then(res => res.data);
+        }  
     };
 }

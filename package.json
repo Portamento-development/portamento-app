@@ -9,7 +9,7 @@
     "start": "webpack-dev-server --inline"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "angular": "^1.5.9",
     "angular-resource": "^1.6.1",
