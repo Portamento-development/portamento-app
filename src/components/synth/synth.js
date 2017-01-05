@@ -48,6 +48,17 @@ function controller(patchService, sequenceService) {
                 sequenceService.add(currSequence);
             });
     };
+
+    
+
+    this.loadSequence = patchId => {
+        console.log('this is what gets passed in', patchId);
+        sequenceService.get(patchId)
+            .then(res => {
+                this.sequenceMatrix = res.sequence;
+                this.bpm = res.tempo;
+            });
+    };
  
     this.styles = styles;
 

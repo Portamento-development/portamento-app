@@ -2,8 +2,8 @@ sequenceService.$inject = ['$http', 'apiUrl'];
 
 export default function sequenceService($http, apiUrl) {
     return {
-        get(sequenceId) {
-            return $http.get(`${apiUrl}/sequences/${sequenceId}`)
+        get(patchId) {
+            return $http.get(`${apiUrl}/sequences/by_patch/${patchId}`)
                 .then(res => res.data);
         },
         add(sequence) {
