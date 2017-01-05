@@ -11,8 +11,8 @@ export default function routes($stateProvider, $urlRouterProvider) {
                     return user.getCurrent();
                 }
             }],
-            userPatches: ['patchService', patchService => {
-                return patchService.getAll();
+            userPatches: ['currentUser', 'patchService', (currentUser, patchService) => {
+                return patchService.getAll(currentUser.id);
                 //TODO: once we resolve user data in the home state we need to chenage this get all to a get by ID
             }]
         }, 
@@ -32,8 +32,8 @@ export default function routes($stateProvider, $urlRouterProvider) {
                 return patchService.get(t.params().id)
                     .then(patch => patch);
             }],
-            userPatches: ['patchService', patchService => {
-                return patchService.getAll();
+            userPatches: ['currentUser', 'patchService', (currentUser, patchService) => {
+                return patchService.getAll(currentUser.id);
                 //TODO: once we resolve user data in the home state we need to chenage this get all to a get by ID
             }]
         },

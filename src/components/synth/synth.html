@@ -7,7 +7,7 @@
 
 	<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.upVote()">upVote</button>
 	<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.favorite()">Favorite</button>
-
+	<label></label>
 	<select ng-options="patch.name for patch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.loadSequence($ctrl.patch._id)"></select>
 
 	<div>
@@ -17,7 +17,7 @@
 		<input type="radio" value="sawtooth" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
 		{{$ctrl.patch.settings.wave}}
 	</div>
-	<div>
+	<div ng-mouseup="$ctrl.unFocus($event)">
 		<label>A</label>
 		<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.attack" ng-change="$ctrl.synth.set('envelope', {attack: $ctrl.patch.settings.envelope.attack})">{{$ctrl.patch.settings.envelope.attack}}
 		
