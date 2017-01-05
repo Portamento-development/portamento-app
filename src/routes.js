@@ -51,5 +51,22 @@ export default function routes($stateProvider, $urlRouterProvider) {
         component: 'user'
     });
 
+    $stateProvider.state({
+        name: 'social',
+        url: '/social',
+        resolve: {
+            favs: ['patchService', (patchService) =>{
+                return patchService.getByFavs();
+            }],
+            votes: ['patchService', (patchService) =>{
+                return patchService.getByVotes();
+            }],
+            userFollows: ['userService', (userService) => {
+                return userService.getByFollowed();
+            }]
+        },
+        component: 'social'
+    });
+
     $urlRouterProvider.otherwise('/');
 }
