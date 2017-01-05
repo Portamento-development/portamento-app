@@ -2,9 +2,6 @@ userService.$inject = ['$http', 'apiUrl', 'authService', '$window'];
 
 export default function userService($http, apiUrl, authService, $window) {
 
-    // const id = authService.currentUser.id;
-    // console.log('id from userService,', id);
-
     return {
         getCurrent() {
             let currentUser = {};
@@ -23,9 +20,8 @@ export default function userService($http, apiUrl, authService, $window) {
             return $http.get(`${apiUrl}/users/${routeId}`)
                 .then(res => res.data);
         },
-
         updateUserPatches(userId, updatedUser) {
-            return $http.put(`${apiUrl}/users/${userId}`, updatedUser)
+            return $http.put(`${apiUrl}/users/${userId}`, updatedUser);
         },
         getByFollowed() {
             return $http.get(`${apiUrl}/users/followed`)
