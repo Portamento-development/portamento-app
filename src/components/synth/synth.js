@@ -5,33 +5,34 @@ import styles from './synth.scss';
 export default {
     template,
     bindings: {
-        userPatches: '<'
+        userPatches: '<',
+        loadedPatch: '<'
     },
     controller
 };
 
+controller.$inject = ['patchService', 'sequenceService', 'userService', '$window'];
 
-controller.$inject = ['patchService', 'sequenceService', '$window'];
-
-function controller(patchService, sequenceService, $window) {
-    //binds key events
+function controller(patchService, sequenceService, userService, $window) {
     const doc = $window.document;
 
+    //binds key events to document level
     this.$onInit = () => {
         doc.addEventListener('keydown', this.keyDownHandler);
         doc.addEventListener('keyup', this.keyUpHandler);
     };
-
+  
+    //destroys key events so they don't repeat each time component reused
     this.$onDestroy = () => {
         doc.removeEventListener('keydown', this.keyDownHandler);
         doc.removeEventListener('keyup', this.keyUpHandler);
     };
-
-    // this.mockId = '586d6567c5e57c0e906ad3c9'; //Will's
+  
+    this.mockId = '586d6567c5e57c0e906ad3c9'; //Will's
     // this.mockId = '586bda97f5977d80498b0883'; //Andy's
-    this.mockId = '586d98b95a9cca386d70b9aa'; //Tom's'
+    // this.mockId = '586d98b95a9cca386d70b9aa'; //Tom's'
 
-
+    //load default patch if patch not resolved in state
     this.patch = {
         name: '',
         settings: {
@@ -46,14 +47,20 @@ function controller(patchService, sequenceService, $window) {
         },
     };
 
+    this.$onInit = function() {
+        if(this.loadedPatch) {
+            this.patch = this.loadedPatch;
+        }
+    };
+    
     this.savePatch = () => {
         if(this.patch._id) {
             delete this.patch._id;
         }
         this.patch.userId = this.mockId;
-        console.log(this.patch);
         patchService.add(this.patch)
             .then(res => {
+                this.patchId = res._id;
                 this.userPatches.push(res);
                 return res;
             })
@@ -64,7 +71,13 @@ function controller(patchService, sequenceService, $window) {
                     patchId: res._id
                 };
                 sequenceService.add(currSequence);
-            });
+            })
+            .then(() => userService.getUserById(this.mockId))
+            .then(user => {
+                user.patchId.push(this.patchId);
+                return user;
+            })
+            .then(user => userService.updateUserPatches(user._id, user));
     };
 
     
@@ -210,7 +223,6 @@ function controller(patchService, sequenceService, $window) {
     };
 
     this.noteOn = function(note) {
-        // console.log(this.synth);
         this.synth.triggerAttack(note);
     };
 
@@ -232,7 +244,6 @@ function controller(patchService, sequenceService, $window) {
             const note = this.notes.find(n => n.keyCode === $event.keyCode);
             this.noteOn(note.note);
         }
-
     };
 
     this.keyUp = function($event) {

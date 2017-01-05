@@ -3,6 +3,9 @@ import styles from './app-header.scss';
 
 export default {
     template,
+    bindings: {
+        currentUser: '<'
+    },
     controller
 };
 
