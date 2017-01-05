@@ -28,6 +28,10 @@ export default function patchService($http, apiUrl) {
         add(patch) {
             return $http.post(`${apiUrl}/patchs`, patch)
                 .then(res => res.data);
+        },
+        update(patchId, updatedPatch) {
+            return $http.put(`${apiUrl}/patchs/${patchId}`, updatedPatch)
+                .then(res => res.data);
         }
     };
 }
