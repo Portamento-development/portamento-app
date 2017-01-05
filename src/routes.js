@@ -14,6 +14,12 @@ export default function routes($stateProvider, $urlRouterProvider) {
     });
 
     $stateProvider.state({
+        name: 'about',
+        url: '/',
+        component: 'about'
+    });
+
+    $stateProvider.state({
         name: 'users',
         url: '/users',
         resolve: {
