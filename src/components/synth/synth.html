@@ -7,7 +7,7 @@
 
 	<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.upVote()">upVote</button>
 	<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.favorite()">Favorite</button>
-
+	<label></label>
 	<select ng-options="patch.name for patch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.loadSequence($ctrl.patch._id)"></select>
 
 	<div>

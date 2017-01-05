@@ -2,8 +2,8 @@ patchService.$inject = ['$http', 'apiUrl'];
 
 export default function patchService($http, apiUrl) {
     return {
-        getAll() {
-            return $http.get(`${apiUrl}/patchs`)
+        getAll(userId) {
+            return $http.get(`${apiUrl}/patchs?userId=${userId}`)
                 .then(res => {
                     console.log('getAll response: ', res);
                     return res.data;
