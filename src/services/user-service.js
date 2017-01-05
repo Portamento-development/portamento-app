@@ -6,8 +6,8 @@ export default function userService($http, apiUrl, authService) {
     console.log('id from userService,', id);
 
     return {
-        getUserById() {
-            return $http.get(`${apiUrl}/users/${id}`)
+        getUserById(routeId) {
+            return $http.get(`${apiUrl}/users/${routeId}`)
                 .then(res => res.data);
         }    
     };

@@ -1,0 +1,22 @@
+<h1>User Profile</h1>
+<section>
+    <h2>Username: {{$ctrl.userData.username}}</h2>
+    <div>
+        <h2>Patches</h2>
+        <ul>    
+            <li ng-repeat="patch in $ctrl.userData.patchId">{{patch.name}}</li>
+        </ul>
+    </div>
+    <div>
+        <h2>Users Followed</h2>
+        <ul>    
+            <li ng-repeat="user in $ctrl.userData.followingId">{{user.username}}</li>
+        </ul>
+    </div>
+    <div>
+        <h2>Favorite Patches</h2>
+        <ul>    
+            <li ng-repeat="fav in $ctrl.userData.favoriteId">{{fav.name}}</li>
+        </ul>
+    </div>
+</section>
