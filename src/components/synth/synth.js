@@ -5,7 +5,8 @@ import styles from './synth.scss';
 export default {
     template,
     bindings: {
-        userPatches: '<'
+        userPatches: '<',
+        loadedPatch: '<'
     },
     controller
 };
@@ -14,12 +15,11 @@ export default {
 controller.$inject = ['patchService', 'sequenceService', 'userService'];
 
 function controller(patchService, sequenceService, userService) {
-
     this.mockId = '586d6567c5e57c0e906ad3c9'; //Will's
     // this.mockId = '586bda97f5977d80498b0883'; //Andy's
     // this.mockId = '586d98b95a9cca386d70b9aa'; //Tom's'
 
-
+    //load default patch if patch not resolved in state
     this.patch = {
         name: '',
         settings: {
@@ -34,6 +34,12 @@ function controller(patchService, sequenceService, userService) {
         },
     };
 
+    this.$onInit = function() {
+        if(this.loadedPatch) {
+            this.patch = this.loadedPatch;
+        }
+    };
+    
     this.savePatch = () => {
         if(this.patch._id) {
             delete this.patch._id;
