@@ -24,7 +24,7 @@ function controller(patchService, sequenceService) {
         name: '',
         settings: {
             wave: 'sawtooth',
-            evelope: {
+            envelope: {
                 attack: .1,
                 decay: .5,
                 sustain: 1,
@@ -146,6 +146,7 @@ function controller(patchService, sequenceService) {
     this.synth = new Tone.PolySynth(6, Tone.Synth, {
         'oscillator': {
             'partials': [0, 2, 3, 4],
+            'type': 'sawtooth'
         }
     }).toMaster();
 
