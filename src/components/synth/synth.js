@@ -210,7 +210,6 @@ function controller(patchService, sequenceService, userService) {
     };
 
     this.noteOn = function(note) {
-        // console.log(this.synth);
         this.synth.triggerAttack(note);
     };
 

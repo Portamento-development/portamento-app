@@ -4,6 +4,7 @@ import uiRouter from 'angular-ui-router';
 import services from './services';
 import routes from './routes';
 import routeDefault from 'angular-ui-router-default';
+import http from './http';
 import './scss/main.scss';
 
 const app = angular.module('myApp', [
@@ -13,9 +14,11 @@ const app = angular.module('myApp', [
     routeDefault
 ]);
 
+const dev = 'http://localhost:3000/api';
+app.value('apiUrl', dev);
+
+app.config(http);
 app.config(routes);
 
-const dev = 'http://localhost:3000/api';
 
-app.value('apiUrl', dev);
 
