@@ -12,7 +12,7 @@ export default function userService($http, apiUrl, authService) {
         },
 
         updateUserPatches(userId, updatedUser) {
-            return $http.put(`${apiUrl}/users/${userId}`, updatedUser)
+            return $http.put(`${apiUrl}/users/${userId}`, updatedUser);
         },
         getByFollowed() {
             return $http.get(`${apiUrl}/users/followed`)
