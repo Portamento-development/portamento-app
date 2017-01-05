@@ -40,6 +40,10 @@ function controller(patchService, sequenceService) {
         console.log(this.patch);
         patchService.add(this.patch)
             .then(res => {
+                this.userPatches.push(res);
+                return res;
+            })
+            .then(res => {
                 const currSequence = {
                     sequence: this.sequenceMatrix,
                     tempo: this.bpm,
