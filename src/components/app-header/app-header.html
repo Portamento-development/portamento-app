@@ -1,10 +1,11 @@
 <section ng-class="$ctrl.styles.header">
     <h1>Portamento</h1>
-    <a ui-sref="user({id: $ctrl.currentUser.id})">User Profile</a>
+    <a ng-if="$ctrl.currentUser.id" ui-sref="user({id: $ctrl.currentUser.id})">User Profile</a>
     <a ui-sref="home">Synth</a>
     <a ui-sref="about">About</a>
+    <button ng-if="$ctrl.currentUser.id" ng-click="$ctrl.logout()">Log Out</button>
 
-    <div>
+    <div ng-if="!$ctrl.currentUser.id">
         <label>
             <input name="login" type="radio" ng-model="$ctrl.action" value="signin">
             Sign in
