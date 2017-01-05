@@ -1,3 +1,7 @@
+:local(.synth) {
+
+margin: 0.5em;
+
 .keyboard {
     ul {
         list-style-type: none;
@@ -53,3 +57,5 @@
     // input[type=range] {
     //     -webkit-appearance: slider-vertical;
     // }
+
+}

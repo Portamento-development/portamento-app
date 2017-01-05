@@ -1,5 +1,5 @@
-<div id="Content" class="FullScreen">
-	<div id="Title">PolySynth</div>
+<div ng-class="$ctrl.styles.synth">
+	<div id="Title">{{$ctrl.patch.name}}</div>
 	<form ng-submit="$ctrl.savePatch()">
 		<input type="text" required ng-model="$ctrl.patch.name">
 		<button>Save</button>
