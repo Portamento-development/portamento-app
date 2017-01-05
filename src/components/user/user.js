@@ -18,7 +18,7 @@ function controller () {
 
     this.$onInit = () => {
         if(this.currentUser.id === this.userData._id) {
-            // console.log('yo its me');
+            console.log('patches:', this.userData);
             this.isMe = true;
         }
         // console.log('Im user data',this.userData);
