@@ -13,10 +13,11 @@ const app = angular.module('myApp', [
     routeDefault
 ]);
 
+const dev = 'http://localhost:3000/api';
+app.value('apiUrl', dev);
+
 app.config(http);
 app.config(routes);
 
-const dev = 'http://localhost:3000/api';
 
-app.value('apiUrl', dev);
 

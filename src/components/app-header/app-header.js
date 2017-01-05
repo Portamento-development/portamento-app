@@ -3,6 +3,9 @@ import styles from './app-header.scss';
 
 export default {
     template,
+    bindings: {
+        currentUser: '<'
+    },
     controller
 };
 
@@ -11,7 +14,6 @@ controller.$inject = ['authService'];
 function controller(authService) {
     this.styles = styles;
     this.action = 'signup';
-
 
     this.login = () => {
         this.credentials = {

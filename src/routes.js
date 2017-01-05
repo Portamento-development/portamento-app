@@ -6,6 +6,11 @@ export default function routes($stateProvider, $urlRouterProvider) {
         name: 'home',
         url: '/',
         resolve: {
+            currentUser: ['authService', 'userService', (auth, user) => {
+                if(auth.isAuthenticated()) {
+                    return user.getCurrent();
+                }
+            }],
             userPatches: ['patchService', patchService => {
                 return patchService.getAll();
             }]
@@ -15,7 +20,7 @@ export default function routes($stateProvider, $urlRouterProvider) {
 
     $stateProvider.state({
         name: 'about',
-        url: '/',
+        url: '/about',
         component: 'about'
     });
 

@@ -4,9 +4,9 @@ import styles from './synth.scss';
 
 export default {
     template,
-    bindings: {
-        userPatches: '<'
-    },
+    // bindings: {
+    //     userPatches: '<'
+    // },
     controller
 };
 
@@ -39,7 +39,6 @@ function controller(patchService, sequenceService) {
             delete this.patch._id;
         }
         this.patch.userId = this.mockId;
-        console.log(this.patch);
         patchService.add(this.patch)
             .then(res => {
                 this.userPatches.push(res);
@@ -197,7 +196,6 @@ function controller(patchService, sequenceService) {
     };
 
     this.noteOn = function(note) {
-        // console.log(this.synth);
         this.synth.triggerAttack(note);
     };
 

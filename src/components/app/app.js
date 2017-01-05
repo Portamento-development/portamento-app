@@ -2,21 +2,19 @@ import template from './app.html';
 
 export default {
     template,
-    bindings: {
-        userPatches: '<'
-    },
     controller
 };
 
-controller.$inject = ['authService'];
+controller.$inject = ['authService', 'userService'];
 
-function controller(auth) {
+function controller(auth, user) {
     this.currentUser = null;
 
     this.$onInit = () => {
-        if (auth.isAuthenticated()) {
-            this.currentUser = auth.currentUser;
-            console.log('Init currentUser: ', this.currentUser);
+        if(auth.isAuthenticated()) {
+            this.currentUser = user.getCurrent();
+            console.log('current user: ', this.currentUser);
         }
     };
+
 }
