@@ -1,5 +1,4 @@
 import Tone from 'tone';
-// import nx from 'nexusui';
 import template from './synth.html';
 import styles from './synth.scss';
 
@@ -12,12 +11,12 @@ export default {
 };
 
 
-controller.$inject = ['patchService'];
+controller.$inject = ['patchService', 'sequenceService'];
 
-function controller(patchService) {
+function controller(patchService, sequenceService) {
 
-    // this.mockId = '586d6567c5e57c0e906ad3c9'; //Will's
-    this.mockId = '586bda97f5977d80498b0883'; //Andy's
+    this.mockId = '586d6567c5e57c0e906ad3c9'; //Will's
+    // this.mockId = '586bda97f5977d80498b0883'; //Andy's
 
     this.patch = {
         name: '',
@@ -39,7 +38,30 @@ function controller(patchService) {
         }
         this.patch.userId = this.mockId;
         console.log(this.patch);
-        patchService.add(this.patch);
+        patchService.add(this.patch)
+            .then(res => {
+                this.userPatches.push(res);
+                return res;
+            })
+            .then(res => {
+                const currSequence = {
+                    sequence: this.sequenceMatrix,
+                    tempo: this.bpm,
+                    patchId: res._id
+                };
+                sequenceService.add(currSequence);
+            });
+    };
+
+    
+
+    this.loadSequence = patchId => {
+        console.log('this is what gets passed in', patchId);
+        sequenceService.get(patchId)
+            .then(res => {
+                this.sequenceMatrix = res.sequence;
+                this.bpm = res.tempo;
+            });
     };
  
     this.styles = styles;
@@ -128,7 +150,6 @@ function controller(patchService) {
     this.updateMatrix = function(col, row) {
         if(this.sequenceMatrix[col][row] === 1) this.sequenceMatrix[col][row] = 0;
         else this.sequenceMatrix[col][row] = 1;
-        // console.log(this.sequenceMatrix);
     };
 
     this.toggleSelect = function() {
@@ -152,7 +173,7 @@ function controller(patchService) {
                 lastNote = notes[i];
             }
         }
-    }, [0, 1, 2, 3], '16n');
+    }, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], '16n');
 
     Tone.Transport.start();
     
