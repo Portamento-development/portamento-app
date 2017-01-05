@@ -14,7 +14,7 @@ export default function authService(tokenService, $http, apiUrl, $state) {
             return $http.post(`${apiUrl}/auth/${endpoint}`, credentials)
                 .then(result => {
                     tokenService.set(result.data.token);
-                    console.log('hi from the authService, here is result.data', result.data);
+                    // console.log('hi from the authService, here is result.data', result.data);
                     currentUser = result.data;
                     return currentUser;
                 })

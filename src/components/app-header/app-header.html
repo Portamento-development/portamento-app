@@ -4,22 +4,28 @@
     <a ui-sref="social">Community</a>
     <a ui-sref="home">Synth</a>
     <a ui-sref="about">About</a>
-    <button ng-if="$ctrl.currentUser.id" ng-click="$ctrl.logout()">Log Out</button>
 
-    <div ng-if="!$ctrl.currentUser.id">
-        <label>
-            <input name="login" type="radio" ng-model="$ctrl.action" value="signin">
-            Sign in
-        </label>
-        <label>
-            <input name="login" type="radio" ng-model="$ctrl.action" value="signup">
-            Sign up
-        </label>
-        <label>Username:</label>
-        <input ng-model="$ctrl.username">
-        <label>Password:</label>
-        <input type="password" ng-model="$ctrl.password">
-        <button ng-click="$ctrl.login()">Submit</button>
-        <h4>Signed in as: {{ $ctrl.currentUser.username }}</h4>
+    <div>
+        <form ng-if="!$ctrl.currentUser.id">
+            <div>
+                <label>
+                    <input name="login" type="radio" ng-model="$ctrl.action" value="signin">
+                    Sign in
+                </label>
+                <label>
+                    <input name="login" type="radio" ng-model="$ctrl.action" value="signup">
+                    Sign up
+                </label>
+            </div>
+            <div>
+                <label>Username: <input ng-model="$ctrl.username"></label>
+                <label>Password: <input type="password" ng-model="$ctrl.password"></label>
+                <button ng-click="$ctrl.login()">Submit</button>
+            </div>
+        </form>
+        <div ng-if="$ctrl.currentUser.id">
+            <span>Signed in as: {{ $ctrl.currentUser.username }}</span>
+            <button ng-click="$ctrl.logout()">Log Out</button>
+        </div>
     </div>
 </section>
