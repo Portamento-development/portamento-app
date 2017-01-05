@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './src/main.js',
@@ -13,8 +14,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
-        // new ExtractTextPlugin('styles.css')
-    ],
+        // new ExtractTextPlugin('styles.css'),
+        new CopyWebpackPlugin([{from: './images', to: 'images'}],
+        {copyUnmodified: true}
+        )],
 
     module: {
         preLoaders: [{
