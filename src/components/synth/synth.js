@@ -91,7 +91,8 @@ function controller(patchService, sequenceService, userService, $window) {
         if(!this.patch.votes) this.patch.votes = 0;
         this.patch.votes += 1;
         patchService.update(this.patch._id, this.patch)
-            .then(res => console.log(res));
+            .then(res => console.log(res))
+            .catch(error => console.log('error at upvoting', error));
     };
 
     this.favorite = () => {

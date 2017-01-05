@@ -18,9 +18,15 @@ function controller () {
 
     this.$onInit = () => {
         if(this.currentUser.id === this.userData._id) {
-            // console.log('yo its me');
             this.isMe = true;
         }
-        // console.log('Im user data',this.userData);
     };
+    // this.follow = () => {
+    //     userService.getUserById(this.currentUser.id)
+    //         .then(user => {
+    //             user.followingId.push(this.userData._id);
+    //             console.log('userData', this.userData);
+    //             userService.updateUser(this.currentUser.id, user);
+    //         });
+    // };
 }
