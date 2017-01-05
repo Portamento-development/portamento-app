@@ -25,7 +25,7 @@
             </div>
         </form>
         <div ng-if="$ctrl.currentUser.id">
-            <span class="message">Signed in as {{ $ctrl.currentUser.username }}</span>
+            <span class="message">Signed in as <a ui-sref="user({id: $ctrl.currentUser.id})">{{ $ctrl.currentUser.username }}</a></span>
             <button ng-click="$ctrl.logout()">Log Out</button>
         </div>
     </div>
