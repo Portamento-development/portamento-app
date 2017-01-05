@@ -10,7 +10,7 @@ export default function routes($stateProvider, $urlRouterProvider) {
                 return patchService.getAll();
             }]
         }, 
-        component: 'app'
+        component: 'synth'
     });
 
     $stateProvider.state({
