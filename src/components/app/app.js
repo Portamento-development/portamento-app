@@ -8,8 +8,15 @@ export default {
     controller
 };
 
-function controller() {
+controller.$inject = ['authService'];
+
+function controller(auth) {
+    this.currentUser = null;
+
     this.$onInit = () => {
-        console.log(this.userPatches);
+        if (auth.isAuthenticated()) {
+            this.currentUser = auth.currentUser;
+            console.log('Init currentUser: ', this.currentUser);
+        }
     };
 }
