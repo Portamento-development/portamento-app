@@ -12,8 +12,17 @@ export default function routes($stateProvider, $urlRouterProvider) {
                 }
             }],
             userPatches: ['currentUser', 'patchService', (currentUser, patchService) => {
-                return patchService.getAll(currentUser.id);
-                //TODO: once we resolve user data in the home state we need to chenage this get all to a get by ID
+                if(currentUser) {
+                    return patchService.getAll(currentUser.id);
+                }
+            }],
+            userData: ['currentUser', 'userService', (currentUser, userService) => {
+                if(currentUser) {
+                    return userService.getUserById(currentUser.id);
+                }
+            }],
+            favPatches: ['userData', (userData) => {
+                return userData.favoriteId;
             }]
         }, 
         component: 'synth'
@@ -33,8 +42,9 @@ export default function routes($stateProvider, $urlRouterProvider) {
                     .then(patch => patch);
             }],
             userPatches: ['currentUser', 'patchService', (currentUser, patchService) => {
-                return patchService.getAll(currentUser.id);
-                //TODO: once we resolve user data in the home state we need to chenage this get all to a get by ID
+                if(currentUser) {
+                    return patchService.getAll(currentUser.id);
+                }
             }]
         },
         component: 'synth'

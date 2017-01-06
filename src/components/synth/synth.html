@@ -7,9 +7,11 @@
 
 	<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.upVote()">upVote</button>
 	<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.favorite()">Favorite</button>
-	<label></label>
-	<select ng-options="patch.name for patch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.loadSequence($ctrl.patch._id)"></select>
-
+	<label>My patches:</label>
+	<select ng-options="patch.name for patch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth()"></select>
+	<label>Favorite patches:</label>
+	<select ng-options="favPatch.name for favPatch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth()"></select>
+	
 	<div>
 		<input type="radio" value="pwm" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
 		<input type="radio" value="triangle" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
