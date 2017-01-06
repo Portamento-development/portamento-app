@@ -38,7 +38,7 @@
 		</div>
 		<div class="panel-div">
 			<h4>Filter type:</h4>
-			<label><input type="radio" value="lowpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Lowpass</label>
+			<label><input type="radio" value="lowpass" ng-checked="true" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Lowpass</label>
 			<label><input type="radio" value="bandpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Bandpass</label>
 			<label><input type="radio" value="highpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Highpass</label>
 			<label><input type="radio" value="allpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Allpass</label>
