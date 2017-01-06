@@ -23,7 +23,7 @@ function controller(patchService, sequenceService, userService, $window) {
         if(this.loadedPatch) {
             this.patch = this.loadedPatch;
             this.patchSaved = true;
-            console.log(this.patch);
+
             this.loadSequence(this.patch._id);
         }
 
