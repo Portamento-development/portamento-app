@@ -18,9 +18,9 @@ controller.$inject = ['patchService', 'sequenceService', 'userService', '$window
 function controller(patchService, sequenceService, userService, $window) {
     const doc = $window.document;
 
-
     this.$onInit = () => {
         this.loginPrompt = false;
+        this.saveFeedback = false;
     
         if(this.loadedPatch) {
             this.favorited = false;
@@ -112,6 +112,7 @@ function controller(patchService, sequenceService, userService, $window) {
             })
             .then(user => userService.updateUser(user._id, user));
 
+        this.saveFeedback = true;
         this.patchSaved = true;
     };
     
