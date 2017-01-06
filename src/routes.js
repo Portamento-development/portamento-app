@@ -21,8 +21,10 @@ export default function routes($stateProvider, $urlRouterProvider) {
                     return userService.getUserById(currentUser.id);
                 }
             }],
-            favPatches: ['userData', (userData) => {
-                return userData.favoriteId;
+            favPatches: ['currentUser', 'userData', (currentUser, userData) => {
+                if(currentUser) {
+                    return userData.favoriteId;
+                }
             }]
         }, 
         component: 'synth'

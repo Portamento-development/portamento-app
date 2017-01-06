@@ -19,6 +19,7 @@ function controller(patchService, sequenceService, userService, $window) {
     const doc = $window.document;
 
     this.$onInit = () => {
+
         if(this.loadedPatch) {
             this.patch = this.loadedPatch;
             this.patchSaved = true;
