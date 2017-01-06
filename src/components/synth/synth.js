@@ -115,6 +115,7 @@ function controller(patchService, sequenceService, userService, $window) {
 
         this.saveFeedback = true;
         this.patchSaved = true;
+        document.getElementById('save').reset(); //eslint-disable-line
     };
     
     this.vote = (number) => {
