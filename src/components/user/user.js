@@ -21,6 +21,12 @@ function controller (userService, patchService) {
         if(this.currentUser.id === this.userData._id) {
             this.isMe = true;
         }
+        userService.getUserById(this.currentUser.id)
+            .then(user => {
+                user.followingId.forEach(obj => {
+                    if(obj._id === this.userData._id) this.followed = true;
+                });
+            });
     };
     this.follow = () => {
         userService.getUserById(this.currentUser.id)
@@ -30,6 +36,20 @@ function controller (userService, patchService) {
                 userService.updateUser(this.currentUser.id, user);
             });
     };
+
+
+    this.unfollow = () => {
+        userService.getUserById(this.currentUser.id)
+            .then(user => {
+                user.followingId.forEach((obj, index) => {
+                    if(obj._id === this.userData._id) {
+                        user.followingId.splice(index, 1);
+                    }
+                });
+                userService.updateUser(this.currentUser.id, user);
+            });
+    };
+
     this.remove = (patch) => {
         patchService.remove(patch);
         let removedPatch = this.userData.patchId.indexOf(patch);
