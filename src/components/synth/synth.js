@@ -18,7 +18,6 @@ controller.$inject = ['patchService', 'sequenceService', 'userService', '$window
 function controller(patchService, sequenceService, userService, $window) {
     const doc = $window.document;
 
-
     this.$onInit = () => {
         this.loginPrompt = false;
     
@@ -48,6 +47,7 @@ function controller(patchService, sequenceService, userService, $window) {
     this.$onDestroy = () => {
         doc.removeEventListener('keydown', this.keyDownHandler);
         doc.removeEventListener('keyup', this.keyUpHandler);
+        this.stopLoop();
     };
      
     this.upVoted = false;
