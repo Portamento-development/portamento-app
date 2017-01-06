@@ -30,10 +30,12 @@
         </ul>
     </div>
 
+
+         
     <div>
-        <ul>    
-            <h3>Most Follows</h3>
-            <li ng-repeat="user in $ctrl.userFollows"><a ui-sref="user({id: user._id})">{{user.username}}</a> : {{user.followingId.length}}</li>
+        <ul> 
+           <h3>Most Followers</h3>
+            <li ng-repeat="user in $ctrl.userFollows"><a ui-sref="user({id: user._id})">{{user.username}}</a> : {{user.followers}}</li>
         </ul>
         <ul>
             <h3>Newest Users</h3>
@@ -42,6 +44,7 @@
         <ul>
             <h3>Random Users</h3>
             <li ng-repeat="user in $ctrl.userFollows"><a ui-sref="user({id: user._id})">{{user.username}}</a> <span class="favs">({{user.followingId.length}})</span></li>
+
         </ul>
     </div>
 </section>

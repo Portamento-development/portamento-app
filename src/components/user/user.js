@@ -35,6 +35,15 @@ function controller (userService, patchService) {
                 user.followingId.push(this.userData._id);
                 console.log('userData', this.userData);
                 userService.updateUser(this.currentUser.id, user);
+            })
+            .then(() => {
+                return userService.getUserById(this.userData._id);
+            })
+            .then(user => {
+                console.log(user);
+                if(!user.followers) user.followers = 0;
+                user.followers += 1;
+                userService.updateUser(this.userData._id, user);
             });
     };
 
