@@ -289,19 +289,22 @@ function controller(patchService, sequenceService, userService, $window) {
         $event.target.blur();
     };
 
-    let fired = false;
+    const fired = {};
+    //let fired = false;
     this.keyDown = function($event) {
+        console.log($event.keyCode);
         if ($event.target.tagName.toLowerCase() === 'input') return;
-        if (!fired) {
-            fired = true;
+        if (!fired[$event.keyCode]) {
+            fired[$event.keyCode] = true;
             $event.preventDefault();
+            //console.log('2nd', )
             const note = this.notes.find(n => n.keyCode === $event.keyCode);
             this.noteOn(note.note);
         }
     };
 
     this.keyUp = function($event) {
-        fired = false;
+        fired[$event.keyCode] = false;
         $event.preventDefault();
         //following line works
         const note = this.notes.find(n => n.keyCode === $event.keyCode);
