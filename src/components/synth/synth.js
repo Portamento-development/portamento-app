@@ -240,13 +240,18 @@ function controller(patchService, sequenceService, userService, $window) {
             keyCode: 222
         }
     ];
+   
+    this.filter = new Tone.Filter().toMaster();
+    this.combFilter = new Tone.FeedbackCombFilter(0, 0).toMaster();
 
     this.synth = new Tone.PolySynth(6, Tone.Synth, {
         'oscillator': {
             'partials': [0, 2, 3, 4],
             'type': 'sawtooth'
         }
-    }).toMaster();
+    });
+
+    this.synth.chain(this.filter, this.combFilter, Tone.Master);
 
     this.updateMatrix = function(col, row) {
         if(this.sequenceMatrix[col][row] === 1) this.sequenceMatrix[col][row] = 0;
