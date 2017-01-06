@@ -12,7 +12,7 @@ export default {
 
 controller.$inject = ['userService'];
 
-function controller () {
+function controller (userService) {
     this.styles = styles;
     this.isMe = false;
 
@@ -21,12 +21,12 @@ function controller () {
             this.isMe = true;
         }
     };
-    // this.follow = () => {
-    //     userService.getUserById(this.currentUser.id)
-    //         .then(user => {
-    //             user.followingId.push(this.userData._id);
-    //             console.log('userData', this.userData);
-    //             userService.updateUser(this.currentUser.id, user);
-    //         });
-    // };
+    this.follow = () => {
+        userService.getUserById(this.currentUser.id)
+            .then(user => {
+                user.followingId.push(this.userData._id);
+                console.log('userData', this.userData);
+                userService.updateUser(this.currentUser.id, user);
+            });
+    };
 }
