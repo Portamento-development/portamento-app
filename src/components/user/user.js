@@ -67,9 +67,6 @@ function controller (userService, patchService) {
         let removedIndex = this.userData.patchId.findIndex(item => {
             return item._id === patch;
         });
-        console.log('patch', patch);
-        console.log('removed index', removedIndex);
         this.userData.patchId.splice(removedIndex, 1);
-        console.log('array', this.userData.patchId);
     };
 }
