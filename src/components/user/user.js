@@ -63,7 +63,13 @@ function controller (userService, patchService) {
 
     this.remove = (patch) => {
         patchService.remove(patch);
-        let removedPatch = this.userData.patchId.indexOf(patch);
-        this.userData.patchId.splice(removedPatch, 1);
+
+        let removedIndex = this.userData.patchId.findIndex(item => {
+            return item._id === patch;
+        });
+        console.log('patch', patch);
+        console.log('removed index', removedIndex);
+        this.userData.patchId.splice(removedIndex, 1);
+        console.log('array', this.userData.patchId);
     };
 }
