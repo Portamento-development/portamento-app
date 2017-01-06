@@ -47,6 +47,16 @@ export default function routes($stateProvider, $urlRouterProvider) {
                 if(currentUser) {
                     return patchService.getAll(currentUser.id);
                 }
+            }],
+            userData: ['currentUser', 'userService', (currentUser, userService) => {
+                if(currentUser) {
+                    return userService.getUserById(currentUser.id);
+                }
+            }],
+            favPatches: ['currentUser', 'userData', (currentUser, userData) => {
+                if(currentUser) {
+                    return userData.favoriteId;
+                }
             }]
         },
         component: 'synth'
@@ -85,7 +95,7 @@ export default function routes($stateProvider, $urlRouterProvider) {
                 return patchService.getByVotes();
             }],
             userFollows: ['userService', (userService) => {
-                return userService.getByFollowed();
+                return userService.getByFollowers();
             }]
         },
         component: 'social'

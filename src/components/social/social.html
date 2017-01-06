@@ -19,8 +19,8 @@
         </ul>
         <ul>    
 
-            <h3>Most Follows</h3>
-            <li ng-repeat="user in $ctrl.userFollows"><a ui-sref="user({id: user._id})">{{user.username}}</a> : {{user.followingId.length}}</li>
+            <h3>Most Followers</h3>
+            <li ng-repeat="user in $ctrl.userFollows"><a ui-sref="user({id: user._id})">{{user.username}}</a> : {{user.followers}}</li>
             
         </ul>
     </div>
