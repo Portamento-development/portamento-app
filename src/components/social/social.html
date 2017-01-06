@@ -24,8 +24,10 @@
         <ul>
             <h3>Random Patches</h3>
             <li ng-repeat="patch in $ctrl.randomPatches">
-                <a ui-sref="patch({id: patch._id})">{{patch.name}}</a>
-                by <a class="userlink" ui-sref="user({id: patch.userId._id})">{{patch.userId.username}}</a>
+                <span>
+                <a ui-sref="patch({id: patch._id})">{{patch.name}}</a>  
+                by <a class="userlink" ui-sref="user({id: patch.userId._id})">{{patch.userId.username}}</a>              
+                </span>
             <li>
         </ul>
     </div>
