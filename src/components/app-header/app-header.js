@@ -9,11 +9,13 @@ export default {
     controller
 };
 
-controller.$inject = ['authService'];
+controller.$inject = ['$state', 'authService'];
 
-function controller(authService) {
+function controller($state, authService) {
     this.styles = styles;
     this.action = 'signin';
+    this.badSignin = false;
+    this.badUsername = false;
 
     this.login = () => {
         this.credentials = {
@@ -25,18 +27,22 @@ function controller(authService) {
                 .then(res => {
                     console.log('signed up as', res);
                     this.currentUser = res;
+                    this.badUsername = false;
+                    $state.go('home');
                 })
-                .catch(err => {
-                    console.log('signup catch', err);
+                .catch(() => {
+                    this.badUsername = true;
                 });
         } else if (this.action === 'signin') {
             authService.signin(this.credentials)
                 .then(res => {
                     console.log('signed in as', res);
                     this.currentUser = res;
+                    this.badSignin = false;
+                    $state.go('home');
                 })
-                .catch(err => {
-                    console.log('signup catch', err);
+                .catch(() => {
+                    this.badSignin = true;
                 });
         } 
     };
@@ -45,6 +51,7 @@ function controller(authService) {
         console.log('logging out');
         authService.logout();
         this.currentUser = null;
+        $state.go('home');
     };
 
 }
