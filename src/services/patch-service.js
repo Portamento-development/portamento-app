@@ -32,6 +32,10 @@ export default function patchService($http, apiUrl) {
         update(patchId, updatedPatch) {
             return $http.put(`${apiUrl}/patchs/${patchId}`, updatedPatch)
                 .then(res => res.data);
+        },
+        remove(patchId) {
+            return $http.delete(`${apiUrl}/patchs/${patchId}`)
+                .then(res => res.data);
         }
     };
 }
