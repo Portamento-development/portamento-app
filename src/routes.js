@@ -103,6 +103,9 @@ export default function routes($stateProvider, $urlRouterProvider) {
             }],
             randomPatches: ['patchService', (patchService) => {
                 return patchService.getRandom();
+            }],
+            randomUsers: ['userService', (userService) => {
+                return userService.getRandom();
             }]
         },
         component: 'social'

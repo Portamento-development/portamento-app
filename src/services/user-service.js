@@ -28,6 +28,10 @@ export default function userService($http, apiUrl, $window) {
         getRecent() {
             return $http.get(`${apiUrl}/users/recent`)
                 .then(res => res.data);
-        }  
+        },
+        getRandom() {
+            return $http.get(`${apiUrl}/users/random`)
+                .then(res => res.data);
+        }
     };
 }

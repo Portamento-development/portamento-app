@@ -31,8 +31,6 @@
             <li>
         </ul>
     </div>
-
-
          
     <div>
         <ul> 
@@ -45,7 +43,7 @@
         </ul>
         <ul>
             <h3>Random Users</h3>
-            <li ng-repeat="user in $ctrl.userFollows"><a ui-sref="user({id: user._id})">{{user.username}}</a> <span class="favs">({{user.followingId.length}})</span></li>
+            <li ng-repeat="user in $ctrl.randomUsers"><a ui-sref="user({id: user._id})">{{user.username}}</a> : ({{user.patchId}} patches)</li>
 
         </ul>
     </div>
