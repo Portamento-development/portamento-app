@@ -4,11 +4,11 @@
 		<div id="panel-left" class="panel-div">
 			<h4>Preset:</h4>
 			<div id="Title">{{$ctrl.patch.name}}</div>
-			<form ng-submit="$ctrl.savePatch()">
+			<form id="save" ng-submit="$ctrl.savePatch()">
 				<input type="text" required ng-model="$ctrl.patch.name" ng-change="$ctrl.saveFeedback = false">
 				<button>Save</button>
 				<p ng-if="$ctrl.loginPrompt"> Sign in or sign up to save your setting and connect with other users</p>
-				<p ng-if="$ctrl.saveFeedback"><span>&#10003;</span> Patch saved!</p>
+				<p class="feedback" ng-if="$ctrl.saveFeedback"><span>&#10003;</span> Patch saved!</p>
 			</form>
 
 			<div ng-if="$ctrl.currentUser">
