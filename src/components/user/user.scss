@@ -27,10 +27,14 @@
             font-size: 0.9em;
             border-bottom: 1px solid #eee;
         }
-
-        li:hover {
-            cursor: pointer;
-        }
+    }
+    a {
+        font-weight: 400;
+        text-decoration: none;
+        color: $secondary-color;
     }
 
+    a:hover {
+        color: $hover-color;
+    }
 }
