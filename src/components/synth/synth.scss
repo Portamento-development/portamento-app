@@ -74,13 +74,14 @@
         height: 30px;
         width: 30px;
         margin-bottom: 4px;
-        background-color: red;
-        box-shadow: inset rgba(128, 0, 0, 0.2) 0 -1px 1px 1px, inset #cc0000 0 -1px 9px, inset #ff3333 0 2px 14px;
+        background-color: #999;
+        box-shadow: inset rgba(128, 0, 0, 0.2) 0 -1px 1px 1px, inset #444 0 -1px 9px, inset #bbb 0 2px 14px;
         color: transparent;
     }
 
     .selected {
-        background-color: blue; 
+        background-color: #ccc; 
+        opacity: 0.2;
         color: transparent;
         box-shadow: inset rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #006 0 -1px 9px, inset #3F8CFF 0 2px 14px;
     };
