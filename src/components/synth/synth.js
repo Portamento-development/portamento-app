@@ -27,7 +27,7 @@ function controller(patchService, sequenceService, userService, $window) {
             console.log(this.patch);
             this.loadSequence(this.patch._id);
         }
-      
+        
         doc.addEventListener('keydown', this.keyDownHandler);
         doc.addEventListener('keyup', this.keyUpHandler);
     };
