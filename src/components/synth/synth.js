@@ -24,7 +24,7 @@ function controller(patchService, sequenceService, userService, $window) {
             this.patchSaved = true;
             console.log(this.patch);
         }
-        //binds key events to document level
+
         doc.addEventListener('keydown', this.keyDownHandler);
         doc.addEventListener('keyup', this.keyUpHandler);
     };
