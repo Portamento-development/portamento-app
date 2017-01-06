@@ -20,9 +20,9 @@
 			</div>
 
 			<label>My patches:</label>
-			<select ng-options="patch.name for patch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth()"></select>
+			<select ng-options="patch.name for patch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth(); $ctrl.saveFeedback = false"></select>
 			<label>Favorite patches:</label>
-			<select ng-options="favPatch.name for favPatch in $ctrl.favPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth()"></select>
+			<select ng-options="favPatch.name for favPatch in $ctrl.favPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth(); $ctrl.saveFeedback = false"></select>
 		</div>
 
 		<div id="envelope"  class="panel-div" ng-mouseup="$ctrl.unFocus($event)">
