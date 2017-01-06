@@ -8,9 +8,14 @@
 				<input type="text" required ng-model="$ctrl.patch.name">
 				<button>Save</button>
 			</form>
+		<div ng-if="$ctrl.currentUser">
+			<button ng-if="$ctrl.patchSaved && $ctrl.upVoted === false" ng-click="$ctrl.vote(1)">upVote</button>
+			<button ng-if="$ctrl.patchSaved && $ctrl.upVoted === true" ng-click="$ctrl.vote(-1)">downVote</button>
 
-			<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.upVote()">upVote</button>
-			<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.favorite()">Favorite</button>
+			<button ng-if="$ctrl.patchSaved && $ctrl.favorited === false" ng-click="$ctrl.favorite()">Favorite</button>
+			<button ng-if="$ctrl.patchSaved && $ctrl.favorited === true" ng-click="$ctrl.unfavorite()">Unfavorite</button>
+		</div>
+
       <label>My patches:</label>
       <select ng-options="patch.name for patch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth()"></select>
       <label>Favorite patches:</label>

@@ -5,15 +5,12 @@ export default function patchService($http, apiUrl) {
         getAll(userId) {
             return $http.get(`${apiUrl}/patchs?userId=${userId}`)
                 .then(res => {
-                    console.log('getAll response: ', res);
                     return res.data;
                 });
         },
         get(patchId) {
-            console.log('in patch service');
             return $http.get(`${apiUrl}/patchs/${patchId}`)
                 .then(res => {
-                    console.log(res.data);
                     return res.data;
                 });
         },

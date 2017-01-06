@@ -19,12 +19,20 @@ function controller(patchService, sequenceService, userService, $window) {
     const doc = $window.document;
 
     this.$onInit = () => {
-
+        
         if(this.loadedPatch) {
+            this.favorited = false;
             this.patch = this.loadedPatch;
             this.patchSaved = true;
-            console.log(this.patch);
             this.loadSequence(this.patch._id);
+            userService.getUserById(this.currentUser.id)
+                .then(user => {
+                    user.favoriteId.forEach(obj => {
+                        if(obj._id === this.patch._id) {
+                            this.favorited = true;
+                        }
+                    });
+                });
         }
 
         doc.addEventListener('keydown', this.keyDownHandler);
@@ -41,6 +49,7 @@ function controller(patchService, sequenceService, userService, $window) {
     // this.mockId = '586bda97f5977d80498b0883'; //Andy's
     // this.mockId = '586d98b95a9cca386d70b9aa'; //Tom's'
     
+    this.upVoted = false;
     this.patchSaved = false;
     //load default patch if patch not resolved in state
     this.patch = {
@@ -100,15 +109,19 @@ function controller(patchService, sequenceService, userService, $window) {
         this.patchSaved = true;
     };
 
-    this.upVote = () => {
+    this.vote = (number) => {
+        if(this.upVoted === false) this.upVoted = true;
+        else this.upVoted = false;
+        console.log(this.upVoted, this.patchSaved);
         if(!this.patch.votes) this.patch.votes = 0;
-        this.patch.votes += 1;
+        this.patch.votes += number;
         patchService.update(this.patch._id, this.patch)
             .then(res => console.log(res))
             .catch(error => console.log('error at upvoting', error));
     };
 
     this.favorite = () => {
+        this.favorited = true;
         if(!this.patch.favorites) this.patch.favorites = 0;
         this.patch.favorites += 1;
         patchService.update(this.patch._id, this.patch)
@@ -116,14 +129,30 @@ function controller(patchService, sequenceService, userService, $window) {
                 userService.getUserById(this.currentUser.id)
                     .then(user => {
                         user.favoriteId.push(this.patch._id);
-                        console.log('user', user);
                         userService.updateUser(this.currentUser.id, user);
                     });
             });
     };
 
+    this.unfavorite = () => {
+        this.favorited = false;
+        this.patch.favorites += -1;
+        patchService.update(this.patch._id, this.patch)
+            .then(() => {
+                userService.getUserById(this.currentUser.id)
+                    .then(user => {
+                        user.favoriteId.forEach((obj, index) => {
+                            if(obj._id === this.patch._id) {
+                                user.favoriteId.splice(index, 1);
+                            }
+                        });
+                        userService.updateUser(this.currentUser.id, user);
+                    });
+
+            });
+    };
+
     this.loadSequence = patchId => {
-        console.log('this.synth: ', this.synth);
         sequenceService.get(patchId)
             .then(res => {
                 this.sequenceMatrix = res.sequence;
