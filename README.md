@@ -2,7 +2,7 @@
 ## a synthesizer & sequencer social sharing site.
 ### site url: https://portamento.herokuapp.com
 
-### Collaborators
+### Collaborators - app constructed through mob & pair programming
   - Andy Beers
   - Tim Combs
   - William Nickerson
