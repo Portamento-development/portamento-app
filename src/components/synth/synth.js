@@ -239,13 +239,42 @@ function controller(patchService, sequenceService, userService, $window) {
             keyCode: 222
         }
     ];
+   
+    this.filter = new Tone.Filter(200, 'lowpass').toMaster();
 
     this.synth = new Tone.PolySynth(6, Tone.Synth, {
         'oscillator': {
             'partials': [0, 2, 3, 4],
             'type': 'sawtooth'
         }
-    }).toMaster();
+    });
+
+    this.synth.chain(this.filter, Tone.Master);
+
+    //trying to hook up filter
+    // this.synth.connect(filter);
+    // this.synth.filter = new Tone.Filter(200, 'lowpass').connect(this.synth).toMaster();
+
+    
+    // this.synth.set({
+    //     'filter': {
+    //         'Q': 1,
+    //         'type': 'lowpass',
+    //         'rolloff': -24
+    //     },
+    //     'envelope': {
+    //         'attack': 1
+    //     },
+    //     'filterEnvelope': {
+    //         'attack':0.2,
+    //         'decay':0.5,
+    //         'sustain':0.3,
+    //         'release':2,
+    //         'baseFrequency':500,
+    //         'octaves':7,
+    //         'exponent':2
+    //     }
+    // }).toMaster();
 
     this.updateMatrix = function(col, row) {
         if(this.sequenceMatrix[col][row] === 1) this.sequenceMatrix[col][row] = 0;

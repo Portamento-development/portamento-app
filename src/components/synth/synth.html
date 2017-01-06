@@ -40,12 +40,12 @@
 				</label>
 
 		</div>
-		<!--<div>
+		<div>
 			<label>Filter Type: {{filterType}}</label>
-			<input type="radio" value="highpass" ng-model="filterType" ng-change="$ctrl.setFilter(10000, filterType)">
-			<input type="radio" value="lowpass" ng-model="filterType" ng-change="$ctrl.setFilter(10, filterType)">
-			<input type="radio" value="bandpass" ng-model="filterType" ng-change="$ctrl.setFilter(800, filterType)">
-		</div>-->
+			<input type="radio" value="highpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">
+			<input type="radio" value="lowpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">
+			<input type="radio" value="bandpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">
+		</div>
 		<div id="panel-right" class="panel-div">
 			<h4>Waveform:</h4>
 			<div id="waveform">
