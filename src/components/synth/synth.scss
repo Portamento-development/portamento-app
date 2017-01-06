@@ -32,6 +32,7 @@
     .keyboard {
 
         ul {
+            display: flex;
             list-style-type: none;
             font-size: 0.7em;
             padding-left: 0;
@@ -80,16 +81,11 @@
     }
 
     .selected {
-        background-color: #ccc; 
+        background-color: #3fecff; 
         opacity: 0.2;
         color: transparent;
-        box-shadow: inset rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #006 0 -1px 9px, inset #3F8CFF 0 2px 14px;
+        box-shadow: inset rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #513fff 0 -1px 9px, inset #3F8CFF 0 2px 14px;
     };
-
-    // .not-selected {
-    //     background-color: rgba(255,0,0,.5);
-    //     color: rgba(255,0,0,.5);
-    // }
 
     #sequencer {
         display: flex;

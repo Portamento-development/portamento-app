@@ -1,3 +1,5 @@
+@import 'colors';
+
 :local(.social) {
     display: flex;
     flex-direction: column;
@@ -14,6 +16,27 @@
         text-align: left;
         padding-left: 0;
         margin: 0;
+
+        li {
+            padding-top: 0.2em;
+            padding-bottom: 0.2em;
+            font-size: 0.9em;
+            border-bottom: 1px solid #eee;
+
+            span {
+                font-size: 0.7em;
+            }
+        }
+    }
+
+    a {
+        font-weight: 700;
+        text-decoration: none;
+        color: $secondary-color;
+    }
+
+    a:hover {
+        color: $hover-color;
     }
 
 }

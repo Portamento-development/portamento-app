@@ -1,8 +1,9 @@
-@import 'fonts';
+@import 'fonts', 'colors';
 
 :local(.header) {
     
-    background: repeating-linear-gradient(to left top, #474647, #ddd);      
+    // background: linear-gradient(to left top, #474647, #ddd);   
+    background: linear-gradient(to left top, hsl(180, 10%, 78%), hsl(180, 10%, 63%)); 
     text-align: center;
     color: white;
     
@@ -41,7 +42,7 @@
     }
 
     .message a:hover {
-        color: #A6F6FF;
+        color: $hover-color;
     }
 
     
