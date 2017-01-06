@@ -44,7 +44,14 @@
     }
 
     a:hover {
-        color: $hover-color;
+        color: $hover-dark;
     }
 
+    .userlink {
+        color: $third-color;
+    }
+
+    .userlink:hover {
+        color: $hover-alt;
+    }
 }

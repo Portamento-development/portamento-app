@@ -1,3 +1,5 @@
+@import 'colors';
+
 :local(.about) {
     display: flex;
     flex-direction: column;
@@ -11,6 +13,7 @@
             p {
                 font-size: 0.8em;
                 text-align: left;
+                margin-bottom: 0.3em;
             }
 
     }
@@ -42,5 +45,39 @@
         border-radius: 2px;
     }
 
+    a {
+        font-weight: 700;
+        text-decoration: none;
+        color: $secondary-color;
+    }
+
+    a:hover {
+        color: $hover-dark;
+    }
+
+    .userlink {
+        color: $third-color;
+    }
+
+    .userlink:hover {
+        color: $hover-alt;
+    }
+
+    .author-links {
+        font-size: 0.7em;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+
+
+        li {
+            padding: 0;
+
+            a {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
 
 }
