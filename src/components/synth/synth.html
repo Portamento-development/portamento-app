@@ -36,21 +36,6 @@
 				Release: {{$ctrl.patch.settings.envelope.release}}
 				<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.release" ng-change="$ctrl.synth.set('envelope', {release: $ctrl.patch.settings.envelope.release})">
 		</div>
-		<div class="panel-div">
-			<h4>Filter type:</h4>
-			<label><input type="radio" value="lowpass" ng-checked="true" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Lowpass</label>
-			<label><input type="radio" value="bandpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Bandpass</label>
-			<label><input type="radio" value="highpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Highpass</label>
-			<label><input type="radio" value="allpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Allpass</label>
-		</div>
-		<div class="panel-div" id="filter-control">
-			<h4>Filter Control:</h4>
-			Frequency: {{filterFreq}}<input min="200" max="5000" step="100" type="range" value="filterFreq" ng-model="filterFreq" ng-change="$ctrl.filter.set('frequency', filterFreq)">
-			Q: {{filterQ}}<input type="range" min="1" max="20" step="0.5" ng-init="filterQ=1" value="Q" ng-model="filterQ" ng-change="$ctrl.filter.set('Q', filterQ)">
-			<h4>Comb Filter:</h4>
-			Comb Filter Delay: {{combFilterDelay}}<input type="range" min="0" max="1" step="0.1" ng-init="combFilterDelay=0" value="combFilterDelay" ng-model="combFilterDelay" ng-change="$ctrl.combFilter.set('delayTime', combFilterDelay)">
-			Comb Filter Resonance: {{filterResonance}}<input type="range" min="0" max="1" step="0.1" ng-init="filterResonance=0" value="filterResonance" ng-model="filterResonance" ng-change="$ctrl.combFilter.set('resonance', filterResonance)">
-		</div>
 		<div id="panel-right" class="panel-div">
 			<h4>Waveform:</h4>
 			<div id="waveform">
@@ -64,6 +49,21 @@
 				<h4>Portamento: </h4>{{$ctrl.patch.settings.portamento}}
 				<input type="range" min="0" max="2" step="0.1" ng-model="$ctrl.patch.settings.portamento" ng-change="$ctrl.synth.set('portamento', $ctrl.patch.settings.portamento)">
 			</div>
+		</div>
+		<div class="panel-div" id="filter-control">
+			<h4>Filter Control:</h4>
+			Frequency: {{filterFreq}}<input min="200" max="5000" step="100" type="range" value="filterFreq" ng-model="filterFreq" ng-change="$ctrl.filter.set('frequency', filterFreq)">
+			Q: {{filterQ}}<input type="range" min="1" max="20" step="0.5" ng-init="filterQ=1" value="Q" ng-model="filterQ" ng-change="$ctrl.filter.set('Q', filterQ)">
+			<h4>Comb Filter:</h4>
+			Comb Filter Delay: {{combFilterDelay}}<input type="range" min="0" max="1" step="0.1" ng-init="combFilterDelay=0" value="combFilterDelay" ng-model="combFilterDelay" ng-change="$ctrl.combFilter.set('delayTime', combFilterDelay)">
+			Comb Filter Resonance: {{filterResonance}}<input type="range" min="0" max="1" step="0.1" ng-init="filterResonance=0" value="filterResonance" ng-model="filterResonance" ng-change="$ctrl.combFilter.set('resonance', filterResonance)">
+		</div>
+		<div class="panel-div">
+			<h4>Filter type:</h4>
+			<label><input type="radio" value="lowpass" ng-checked="true" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Lowpass</label>
+			<label><input type="radio" value="bandpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Bandpass</label>
+			<label><input type="radio" value="highpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Highpass</label>
+			<label><input type="radio" value="allpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Allpass</label>
 		</div>
 	</div>
 	<div class="keyboard">
