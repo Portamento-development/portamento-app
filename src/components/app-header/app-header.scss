@@ -2,14 +2,48 @@
 
 :local(.header) {
     
-    background-color: powderblue;
+    background: repeating-linear-gradient(to left top, #474647, #ddd);      
     text-align: center;
+    color: white;
     
     h1 {
         font-family: $display-font;
         text-transform: uppercase;
-        font-size: 3em;
+        font-size: 3.5em;
         margin: 0;
     }
+
+    #header-menu {
+        margin: 0.25em;
+    }
+
+    #header-menu a,
+    #header-menu a:visited {
+        color: white;
+        text-decoration: none;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+    }
+
+    #header-menu a:hover {
+        color: #A6F6FF;
+    }
+
+    .message {
+        font-size: 0.8em;
+        font-weight: 400;
+    }
+
+    .message a,
+    .message a:visited {
+        color: white;
+        text-decoration: none;
+    }
+
+    .message a:hover {
+        color: #A6F6FF;
+    }
+
+    
 }
     
