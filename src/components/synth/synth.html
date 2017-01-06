@@ -8,6 +8,7 @@
 				<input type="text" required ng-model="$ctrl.patch.name">
 				<button>Save</button>
 			</form>
+
 		<div ng-if="$ctrl.currentUser">
 			<button ng-if="$ctrl.patchSaved && $ctrl.upVoted === false" ng-click="$ctrl.vote(1)">upVote</button>
 			<button ng-if="$ctrl.patchSaved && $ctrl.upVoted === true" ng-click="$ctrl.vote(-1)">downVote</button>
@@ -67,7 +68,7 @@
 	</div>
 	<div id="sequencer">
 		<ul class="column" ng-repeat="array in $ctrl.sequenceMatrix">
-			<li class="cell" ng-repeat="value in array track by $index" ng-click="$ctrl.updateMatrix($parent.$index, $index);">{{value}}</li>
+			<li ng-class="{cell: true, selected: value}" ng-repeat="value in array track by $index" ng-click="$ctrl.updateMatrix($parent.$index, $index);">{{value}}</li>
 		</ul>
 
 

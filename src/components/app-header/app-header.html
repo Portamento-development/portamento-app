@@ -22,6 +22,8 @@
                 <label>Username: <input ng-model="$ctrl.username"></label>
                 <label>Password: <input type="password" ng-model="$ctrl.password"></label>
                 <button ng-click="$ctrl.login()">Submit</button>
+                <p ng-if="$ctrl.badSignin">Username or password invalid.</p>
+                <p ng-if="$ctrl.badUsername">Username already taken.</p>
             </div>
         </form>
         <div ng-if="$ctrl.currentUser.id">

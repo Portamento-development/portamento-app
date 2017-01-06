@@ -79,7 +79,7 @@ function controller(patchService, sequenceService, userService, $window) {
         });
         // this.loadSequence(this.patch._id);
     };
-    
+
     this.savePatch = () => {
         if(this.patch._id) {
             delete this.patch._id;
@@ -107,6 +107,17 @@ function controller(patchService, sequenceService, userService, $window) {
             .then(user => userService.updateUser(user._id, user));
 
         this.patchSaved = true;
+    };
+    
+    this.$onInit = () => {
+        if(this.loadedPatch) {
+            this.patch = this.loadedPatch;
+            this.patchSaved = true;
+            console.log(this.patch);
+        }
+        //binds key events to document level
+        doc.addEventListener('keydown', this.keyDownHandler);
+        doc.addEventListener('keyup', this.keyUpHandler);
     };
 
     this.vote = (number) => {
@@ -308,19 +319,22 @@ function controller(patchService, sequenceService, userService, $window) {
         $event.target.blur();
     };
 
-    let fired = false;
+    const fired = {};
+
     this.keyDown = function($event) {
+        console.log($event.keyCode);
         if ($event.target.tagName.toLowerCase() === 'input') return;
-        if (!fired) {
-            fired = true;
+        if (!fired[$event.keyCode]) {
+            fired[$event.keyCode] = true;
             $event.preventDefault();
+            //console.log('2nd', )
             const note = this.notes.find(n => n.keyCode === $event.keyCode);
             this.noteOn(note.note);
         }
     };
 
     this.keyUp = function($event) {
-        fired = false;
+        fired[$event.keyCode] = false;
         $event.preventDefault();
         //following line works
         const note = this.notes.find(n => n.keyCode === $event.keyCode);
