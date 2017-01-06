@@ -8,13 +8,14 @@
 				<input type="text" required ng-model="$ctrl.patch.name">
 				<button>Save</button>
 			</form>
-
-			<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.upVote()">upVote</button>
-			<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.favorite()">Favorite</button>
-      <label>My patches:</label>
-      <select ng-options="patch.name for patch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth()"></select>
-      <label>Favorite patches:</label>
-      <select ng-options="favPatch.name for favPatch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth()"></select>
+			<div>
+				<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.upVote()">upVote</button>
+				<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.favorite()">Favorite</button>
+			</div>
+			<label>My patches:</label>
+			<select ng-options="patch.name for patch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth()"></select>
+			<label>Favorite patches:</label>
+			<select ng-options="favPatch.name for favPatch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth()"></select>
 		</div>
 
 		<div id="envelope"  class="panel-div" ng-mouseup="$ctrl.unFocus($event)">
@@ -62,7 +63,7 @@
 	</div>
 	<div id="sequencer">
 		<ul class="column" ng-repeat="array in $ctrl.sequenceMatrix">
-			<li class="cell" ng-repeat="value in array track by $index" ng-click="$ctrl.updateMatrix($parent.$index, $index);">{{value}}</li>
+			<li ng-class="{cell: true, selected: value}" ng-repeat="value in array track by $index" ng-click="$ctrl.updateMatrix($parent.$index, $index);">{{value}}</li>
 		</ul>
 
 
