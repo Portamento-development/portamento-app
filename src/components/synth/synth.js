@@ -290,7 +290,7 @@ function controller(patchService, sequenceService, userService, $window) {
     };
 
     const fired = {};
-    //let fired = false;
+
     this.keyDown = function($event) {
         console.log($event.keyCode);
         if ($event.target.tagName.toLowerCase() === 'input') return;
