@@ -14,6 +14,12 @@ export default function patchService($http, apiUrl) {
                     return res.data;
                 });
         },
+        getRandom() {
+            return $http.get(`${apiUrl}/patchs/random`)
+                .then(res => {
+                    return res.data;
+                });
+        },
         getByVotes() {
             return $http.get(`${apiUrl}/patchs/votes`)
                 .then(res => res.data);

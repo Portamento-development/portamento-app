@@ -6,7 +6,9 @@ export default {
     bindings: {
         favs: '<',
         votes: '<',
-        userFollows: '<'
+        userFollows: '<',
+        recentUsers: '<',
+        randomPatches: '<'
     },
     controller
 };

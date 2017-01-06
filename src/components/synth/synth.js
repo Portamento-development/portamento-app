@@ -28,14 +28,16 @@ function controller(patchService, sequenceService, userService, $window) {
             this.setSynth();
             this.patchSaved = true;
             this.loadSequence(this.patch._id);
-            userService.getUserById(this.currentUser.id)
-                .then(user => {
-                    user.favoriteId.forEach(obj => {
-                        if(obj._id === this.patch._id) {
-                            this.favorited = true;
-                        }
+            if (this.currentUser) {
+                userService.getUserById(this.currentUser.id)
+                    .then(user => {
+                        user.favoriteId.forEach(obj => {
+                            if(obj._id === this.patch._id) {
+                                this.favorited = true;
+                            }
+                        });
                     });
-                });
+            }
         }
 
         doc.addEventListener('keydown', this.keyDownHandler);

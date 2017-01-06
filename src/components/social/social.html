@@ -4,24 +4,47 @@
         <ul>    
             <h3>Liked Patches</h3>
             <li ng-repeat="votes in $ctrl.votes">
-                <a ui-sref="patch({id: votes._id})">{{votes.name}}</a>
-                by <a ui-sref="user({id: votes.userId._id})">{{votes.userId.username}}</a>
-                <span>({{votes.votes}} likes)</span>
+                <span>
+                    <a ui-sref="patch({id: votes._id})">{{votes.name}}</a>
+                    by <a ui-sref="user({id: votes.userId._id})">{{votes.userId.username}}</a>
+                </span>
+                <span class="favs">({{votes.votes}} likes)</span>
             </li>
         </ul>
         <ul>    
             <h3>Favorite Patches</h3>
             <li ng-repeat="favs in $ctrl.favs">
-                <a ui-sref="patch({id: favs._id})">{{favs.name}}</a>
-                by <a ui-sref="user({id: favs.userId._id})">{{favs.userId.username}}</a>
-                <span>({{favs.favorites}} favorites)</span>
+                <span>
+                    <a ui-sref="patch({id: favs._id})">{{favs.name}}</a>
+                    by <a ui-sref="user({id: favs.userId._id})">{{favs.userId.username}}</a>
+                </span>
+                <span class="favs">({{favs.favorites}} favorites)</span>
                 </li>
         </ul>
-        <ul>    
+        <ul>
+            <h3>Random Patches</h3>
+            <li ng-repeat="patch in $ctrl.randomPatches">
+                <a ui-sref="patch({id: patch._id})">{{patch.name}}</a>
+                by <a ui-sref="user({id: patch.userId._id})">{{patch.userId.username}}</a>
+            <li>
+        </ul>
+    </div>
 
-            <h3>Most Followers</h3>
+
+         
+    <div>
+        <ul> 
+           <h3>Most Followers</h3>
             <li ng-repeat="user in $ctrl.userFollows"><a ui-sref="user({id: user._id})">{{user.username}}</a> : {{user.followers}}</li>
-            
+        </ul>
+        <ul>
+            <h3>Newest Users</h3>
+            <li ng-repeat="user in $ctrl.recentUsers"><a ui-sref="user({id: user._id})">{{user.username}}</a> : ({{user.patchId}} patches)</li>
+        </ul>
+        <ul>
+            <h3>Random Users</h3>
+            <li ng-repeat="user in $ctrl.userFollows"><a ui-sref="user({id: user._id})">{{user.username}}</a> <span class="favs">({{user.followingId.length}})</span></li>
+
         </ul>
     </div>
 </section>

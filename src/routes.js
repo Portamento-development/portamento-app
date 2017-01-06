@@ -95,7 +95,14 @@ export default function routes($stateProvider, $urlRouterProvider) {
                 return patchService.getByVotes();
             }],
             userFollows: ['userService', (userService) => {
+
                 return userService.getByFollowers();
+            }],
+            recentUsers: ['userService', (userService) => {
+                return userService.getRecent();
+            }],
+            randomPatches: ['patchService', (patchService) => {
+                return patchService.getRandom();
             }]
         },
         component: 'social'
