@@ -29,6 +29,7 @@ function controller (userService, patchService) {
             });
     };
     this.follow = () => {
+        this.followed = true;
         userService.getUserById(this.currentUser.id)
             .then(user => {
                 user.followingId.push(this.userData._id);
@@ -39,6 +40,7 @@ function controller (userService, patchService) {
 
 
     this.unfollow = () => {
+        this.followed = false;
         userService.getUserById(this.currentUser.id)
             .then(user => {
                 user.followingId.forEach((obj, index) => {
