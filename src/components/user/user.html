@@ -9,11 +9,11 @@
         </ul>
         <ul>
             <h3>Users Followed</h3>
-            <li ng-repeat="user in $ctrl.userData.followingId">{{user.username}}</li>
+            <li ng-repeat="user in $ctrl.userData.followingId" ui-sref="user({id: user._id})">{{user.username}}</li>
         </ul>
         <ul>
             <h3>Favorite Patches</h3>
-            <li ng-repeat="fav in $ctrl.userData.favoriteId">{{fav.name}}</li>
+            <li ng-repeat="fav in $ctrl.userData.favoriteId" ui-sref="patch({id: fav._id})">{{fav.name}}</li>
         </ul>
     </div>
 </section>
