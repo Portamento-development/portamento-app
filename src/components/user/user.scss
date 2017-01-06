@@ -31,7 +31,7 @@
 
             button {
                 font-size: 0.6em;
-                margin: 0.5em;
+                margin: 0 0.2em;
             }
         }
     }
@@ -42,6 +42,14 @@
     }
 
     a:hover {
-        color: $hover-color;
+        color: $hover-dark;
+    }
+
+    .userlink {
+        color: $third-color;
+    }
+
+    .userlink:hover {
+        color: $hover-alt;
     }
 }

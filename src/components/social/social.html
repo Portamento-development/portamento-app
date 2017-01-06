@@ -6,7 +6,7 @@
             <li ng-repeat="votes in $ctrl.votes">
                 <span>
                     <a ui-sref="patch({id: votes._id})">{{votes.name}}</a>
-                    by <a ui-sref="user({id: votes.userId._id})">{{votes.userId.username}}</a>
+                    by <a class="userlink" ui-sref="user({id: votes.userId._id})">{{votes.userId.username}}</a>
                 </span>
                 <span class="favs">({{votes.votes}} likes)</span>
             </li>
@@ -16,7 +16,7 @@
             <li ng-repeat="favs in $ctrl.favs">
                 <span>
                     <a ui-sref="patch({id: favs._id})">{{favs.name}}</a>
-                    by <a ui-sref="user({id: favs.userId._id})">{{favs.userId.username}}</a>
+                    by <a class="userlink" ui-sref="user({id: favs.userId._id})">{{favs.userId.username}}</a>
                 </span>
                 <span class="favs">({{favs.favorites}} favorites)</span>
                 </li>
@@ -25,7 +25,7 @@
             <h3>Random Patches</h3>
             <li ng-repeat="patch in $ctrl.randomPatches">
                 <a ui-sref="patch({id: patch._id})">{{patch.name}}</a>
-                by <a ui-sref="user({id: patch.userId._id})">{{patch.userId.username}}</a>
+                by <a class="userlink" ui-sref="user({id: patch.userId._id})">{{patch.userId.username}}</a>
             <li>
         </ul>
     </div>

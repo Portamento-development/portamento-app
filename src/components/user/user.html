@@ -10,7 +10,7 @@
         </ul>
         <ul>
             <h3>Users Followed</h3>
-            <li ng-repeat="user in $ctrl.userData.followingId"><a ui-sref="user({id: user._id})">{{user.username}}</a></li>
+            <li ng-repeat="user in $ctrl.userData.followingId"><a class="userlink" ui-sref="user({id: user._id})">{{user.username}}</a></li>
         </ul>
         <ul>
             <h3>Favorite Patches</h3>
