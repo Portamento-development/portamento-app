@@ -1,6 +1,7 @@
 <section ng-class="$ctrl.styles.user">
     <h2>User Profile: {{$ctrl.userData.username}}</h2>
     <button ng-if="!$ctrl.isMe && !$ctrl.followed" ng-click="$ctrl.follow()">Follow</button>
+    <button ng-if="!$ctrl.isMe && $ctrl.followed" ng-click="$ctrl.unfollow()">Unfollow</button>
 
     <div>
         <ul>
