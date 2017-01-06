@@ -7,6 +7,22 @@
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
+
+            p {
+                font-size: 0.8em;
+                text-align: left;
+            }
+
+    }
+
+    div {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+
+        p {
+            text-align: left;
+        }
     }
 
     ul {
@@ -23,11 +39,8 @@
 
     img {
         width: 80px;
+        border-radius: 2px;
     }
 
-    p {
-        font-size: 0.8em;
-        text-align: left;
-    }
 
 }
