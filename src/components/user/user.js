@@ -17,6 +17,7 @@ function controller () {
     this.isMe = false;
 
     this.$onInit = () => {
+        this.followed = false;
         if(this.currentUser.id === this.userData._id) {
             this.isMe = true;
         }
