@@ -19,7 +19,6 @@ function controller(patchService, sequenceService, userService, $window) {
     const doc = $window.document;
 
     this.$onInit = () => {
-        console.log('user patches', this.userPatches);
 
         if(this.loadedPatch) {
             this.patch = this.loadedPatch;
@@ -27,7 +26,7 @@ function controller(patchService, sequenceService, userService, $window) {
             console.log(this.patch);
             this.loadSequence(this.patch._id);
         }
-        
+
         doc.addEventListener('keydown', this.keyDownHandler);
         doc.addEventListener('keyup', this.keyUpHandler);
     };
