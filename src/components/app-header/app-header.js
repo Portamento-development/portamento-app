@@ -39,7 +39,9 @@ function controller($state, authService) {
                     console.log('signed in as', res);
                     this.currentUser = res;
                     this.badSignin = false;
+
                     $state.reload('home');
+
                 })
                 .catch(() => {
                     this.badSignin = true;
@@ -52,6 +54,7 @@ function controller($state, authService) {
         authService.logout();
         this.currentUser = null;
         $state.reload('home');
+
     };
 
 }
