@@ -20,6 +20,7 @@ function controller(patchService, sequenceService, userService, $window) {
 
     this.$onInit = () => {
         this.loginPrompt = false;
+        this.saveFeedback = false;
     
         if(this.loadedPatch) {
             this.favorited = false;
@@ -112,6 +113,7 @@ function controller(patchService, sequenceService, userService, $window) {
             })
             .then(user => userService.updateUser(user._id, user));
 
+        this.saveFeedback = true;
         this.patchSaved = true;
     };
     

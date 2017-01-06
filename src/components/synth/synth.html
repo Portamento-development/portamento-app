@@ -5,9 +5,10 @@
 			<h4>Preset:</h4>
 			<div id="Title">{{$ctrl.patch.name}}</div>
 			<form ng-submit="$ctrl.savePatch()">
-				<input type="text" required ng-model="$ctrl.patch.name">
+				<input type="text" required ng-model="$ctrl.patch.name" ng-change="$ctrl.saveFeedback = false">
 				<button>Save</button>
 				<p ng-if="$ctrl.loginPrompt"> Sign in or sign up to save your setting and connect with other users</p>
+				<p ng-if="$ctrl.saveFeedback"><span>&#10003;</span> Patch saved!</p>
 			</form>
 
 			<div ng-if="$ctrl.currentUser">
@@ -19,9 +20,9 @@
 			</div>
 
 			<label>My patches:</label>
-			<select ng-options="patch.name for patch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth()"></select>
+			<select ng-options="patch.name for patch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth(); $ctrl.saveFeedback = false"></select>
 			<label>Favorite patches:</label>
-			<select ng-options="favPatch.name for favPatch in $ctrl.favPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth()"></select>
+			<select ng-options="favPatch.name for favPatch in $ctrl.favPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth(); $ctrl.saveFeedback = false"></select>
 		</div>
 
 		<div id="envelope"  class="panel-div" ng-mouseup="$ctrl.unFocus($event)">
