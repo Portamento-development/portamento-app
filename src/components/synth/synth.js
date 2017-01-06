@@ -19,10 +19,12 @@ function controller(patchService, sequenceService, userService, $window) {
     const doc = $window.document;
 
     this.$onInit = () => {
+        console.log('in on init ', this.loadedPatch);
         
         if(this.loadedPatch) {
             this.favorited = false;
             this.patch = this.loadedPatch;
+            this.setSynth();
             this.patchSaved = true;
             this.loadSequence(this.patch._id);
             userService.getUserById(this.currentUser.id)
@@ -67,6 +69,7 @@ function controller(patchService, sequenceService, userService, $window) {
     };
 
     this.setSynth = () => {
+        console.log('from set synth', this.patch);
         this.synth.set({
             oscillator: {type: this.patch.settings.wave},
             envelope: {
@@ -109,17 +112,6 @@ function controller(patchService, sequenceService, userService, $window) {
         this.patchSaved = true;
     };
     
-    this.$onInit = () => {
-        if(this.loadedPatch) {
-            this.patch = this.loadedPatch;
-            this.patchSaved = true;
-            console.log(this.patch);
-        }
-        //binds key events to document level
-        doc.addEventListener('keydown', this.keyDownHandler);
-        doc.addEventListener('keyup', this.keyUpHandler);
-    };
-
     this.vote = (number) => {
         if(this.upVoted === false) this.upVoted = true;
         else this.upVoted = false;
