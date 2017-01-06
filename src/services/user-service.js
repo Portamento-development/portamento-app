@@ -24,6 +24,10 @@ export default function userService($http, apiUrl, $window) {
         getByFollowed() {
             return $http.get(`${apiUrl}/users/followed`)
                 .then(res => res.data);
+        },
+        getRecent() {
+            return $http.get(`${apiUrl}/users/recent`)
+                .then(res => res.data);
         }  
     };
 }
