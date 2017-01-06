@@ -64,7 +64,7 @@ function controller(patchService, sequenceService, userService, $window) {
                 sustain: 1,
                 release: .5
             },
-            portamento: .2
+            portamento: 0
         },
     };
 
