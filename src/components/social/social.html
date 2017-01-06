@@ -2,21 +2,25 @@
     <h1>Social Profile</h1>
     <div>
         <ul>    
-
             <h3>Liked Patches</h3>
-            <li ng-repeat="votes in $ctrl.votes" ui-sref="patch({id: votes._id})">{{votes.name}}</li>
-
+            <li ng-repeat="votes in $ctrl.votes">
+                <a ui-sref="patch({id: votes._id})">{{votes.name}}</a>
+                <a ui-sref="user({id: votes.userId._id})">{{votes.userId.username}}</a>
+                <p>{{votes.votes}}</P>
+            </li>
         </ul>
         <ul>    
-
             <h3>Favorite Patches</h3>
-            <li ng-repeat="favs in $ctrl.favs" ui-sref="patch({id: favs._id})">{{favs.name}}</li>
-            
+            <li ng-repeat="favs in $ctrl.favs">
+                <a ui-sref="patch({id: favs._id})">{{favs.name}}</a>
+                <a ui-sref="user({id: favs.userId._id})">{{favs.userId.username}}</a>
+                <p>{{favs.favorites}}</p>
+                </li>
         </ul>
         <ul>    
 
             <h3>Most Follows</h3>
-            <li ng-repeat="user in $ctrl.userFollows" ui-sref="user({id: user._id})">{{user.username}}</li>
+            <li ng-repeat="user in $ctrl.userFollows" ui-sref="user({id: user._id})">{{user.username}} {{user.followingId.length}}</li>
             
         </ul>
     </div>
