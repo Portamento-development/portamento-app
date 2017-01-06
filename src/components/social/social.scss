@@ -5,6 +5,10 @@
     flex-direction: column;
     text-align: center;
 
+    h2 {
+        margin-bottom: 0.2em;
+    }
+
     div {
         display: flex;
         justify-content: space-around;
@@ -22,9 +26,12 @@
             padding-bottom: 0.2em;
             font-size: 0.9em;
             border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
 
-            span {
+            .favs {
                 font-size: 0.7em;
+                padding-left: 0.3em;
             }
         }
 
