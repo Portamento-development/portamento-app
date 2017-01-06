@@ -8,7 +8,8 @@ export default {
         votes: '<',
         userFollows: '<',
         recentUsers: '<',
-        randomPatches: '<'
+        randomPatches: '<',
+        randomUsers: '<'
     },
     controller
 };
