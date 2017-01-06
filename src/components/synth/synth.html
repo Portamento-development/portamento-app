@@ -1,59 +1,76 @@
 <div ng-class="$ctrl.styles.synth">
-	<div id="Title">{{$ctrl.patch.name}}</div>
-	<form ng-submit="$ctrl.savePatch()">
-		<input type="text" required ng-model="$ctrl.patch.name">
-		<button>Save</button>
-	</form>
 
-	<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.upVote()">upVote</button>
-	<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.favorite()">Favorite</button>
-	<label></label>
-	<select ng-options="patch.name for patch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.loadSequence($ctrl.patch._id)"></select>
+	<div id="panel">
 
-	<div>
-		<input type="radio" value="pwm" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
-		<input type="radio" value="triangle" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
-		<input type="radio" value="square" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
-		<input type="radio" value="sawtooth" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
-		{{$ctrl.patch.settings.wave}}
-	</div>
-	<div ng-mouseup="$ctrl.unFocus($event)">
-		<label>A</label>
-		<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.attack" ng-change="$ctrl.synth.set('envelope', {attack: $ctrl.patch.settings.envelope.attack})">{{$ctrl.patch.settings.envelope.attack}}
-		
-		<label>D</label>
-		<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.decay" ng-change="$ctrl.synth.set('envelope', {decay: $ctrl.patch.settings.envelope.decay})">{{$ctrl.patch.settings.envelope.decay}}
-		
-		<label>S</label>
-		<input type="range" min="0" max="1"  step="0.1" ng-model="$ctrl.patch.settings.envelope.sustain" ng-change="$ctrl.synth.set('envelope', {sustain: $ctrl.patch.settings.envelope.sustain})">{{$ctrl.patch.settings.envelope.sustain}}
-		
-		<label>R</label>
-		<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.release" ng-change="$ctrl.synth.set('envelope', {release: $ctrl.patch.settings.envelope.release})">{{$ctrl.patch.settings.envelope.release}}
-	</div>
-	<!--<div>
-		<label>Filter Type: {{filterType}}</label>
-		<input type="radio" value="highpass" ng-model="filterType" ng-change="$ctrl.setFilter(10000, filterType)">
-		<input type="radio" value="lowpass" ng-model="filterType" ng-change="$ctrl.setFilter(10, filterType)">
-		<input type="radio" value="bandpass" ng-model="filterType" ng-change="$ctrl.setFilter(800, filterType)">
-	</div>-->
-	<div>
-		<label>Portamento</label>
-		<input type="range" min="0" max="2" step="0.1" ng-model="$ctrl.patch.settings.portamento" ng-change="$ctrl.synth.set('portamento', $ctrl.patch.settings.portamento)">{{$ctrl.patch.settings.portamento}}
+		<div id="panel-left" class="panel-div">
+			<h4>Preset:</h4>
+			<div id="Title">{{$ctrl.patch.name}}</div>
+			<form ng-submit="$ctrl.savePatch()">
+				<input type="text" required ng-model="$ctrl.patch.name">
+				<button>Save</button>
+			</form>
+
+			<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.upVote()">upVote</button>
+			<button ng-if="$ctrl.patchSaved" ng-click="$ctrl.favorite()">Favorite</button>
+			<label></label>
+			<select ng-options="patch.name for patch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.loadSequence($ctrl.patch._id)"></select>
+		</div>
+
+		<div id="envelope"  class="panel-div" ng-mouseup="$ctrl.unFocus($event)">
+			<h4>Envelope:</h4>
+
+				<label>Attack
+					<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.attack" ng-change="$ctrl.synth.set('envelope', {attack: $ctrl.patch.settings.envelope.attack})">{{$ctrl.patch.settings.envelope.attack}}
+				</label>
+				<label>Decay
+					<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.decay" ng-change="$ctrl.synth.set('envelope', {decay: $ctrl.patch.settings.envelope.decay})">{{$ctrl.patch.settings.envelope.decay}}
+				</label>
+				<label>Sustain
+					<input type="range" min="0" max="1"  step="0.1" ng-model="$ctrl.patch.settings.envelope.sustain" ng-change="$ctrl.synth.set('envelope', {sustain: $ctrl.patch.settings.envelope.sustain})">{{$ctrl.patch.settings.envelope.sustain}}
+				</label>
+				<label>Resonance
+					<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.release" ng-change="$ctrl.synth.set('envelope', {release: $ctrl.patch.settings.envelope.release})">{{$ctrl.patch.settings.envelope.release}}
+				</label>
+
+		</div>
+		<!--<div>
+			<label>Filter Type: {{filterType}}</label>
+			<input type="radio" value="highpass" ng-model="filterType" ng-change="$ctrl.setFilter(10000, filterType)">
+			<input type="radio" value="lowpass" ng-model="filterType" ng-change="$ctrl.setFilter(10, filterType)">
+			<input type="radio" value="bandpass" ng-model="filterType" ng-change="$ctrl.setFilter(800, filterType)">
+		</div>-->
+		<div id="panel-right" class="panel-div">
+			<h4>Waveform:</h4>
+			<div id="waveform">
+				<input type="radio" value="pwm" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
+				<input type="radio" value="triangle" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
+				<input type="radio" value="square" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
+				<input type="radio" value="sawtooth" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
+				{{$ctrl.patch.settings.wave}}
+			</div>
+			<div>
+				<label>Portamento</label>
+				<input type="range" min="0" max="2" step="0.1" ng-model="$ctrl.patch.settings.portamento" ng-change="$ctrl.synth.set('portamento', $ctrl.patch.settings.portamento)">{{$ctrl.patch.settings.portamento}}
+			</div>
+		</div>
 	</div>
 	<div class="keyboard">
 		<ul>
 			<li ng-repeat="note in $ctrl.notes" ng-mousedown="$ctrl.noteOn(note.note)" ng-mouseup="$ctrl.noteOff(note.note)">{{note.note}}</li>
 		</ul>
 	</div>
-	<div>
+	<div id="sequencer">
 		<ul class="column" ng-repeat="array in $ctrl.sequenceMatrix">
-			<div class="cell" ng-repeat="value in array track by $index" ng-click="$ctrl.updateMatrix($parent.$index, $index);">{{value}}</div>
+			<li class="cell" ng-repeat="value in array track by $index" ng-click="$ctrl.updateMatrix($parent.$index, $index);">{{value}}</li>
 		</ul>
 
 
-		<button ng-click="$ctrl.startLoop()">Start</button><button ng-click="$ctrl.stopLoop()">Stop</button>
-		<label>{{$ctrl.bpm}}</label>
-		<input type="range" min="65" max="200" ng-model="$ctrl.bpm" ng-change="$ctrl.setBpm()">
 	</div>
-	
+	<div id="seq-controls">
+		<button ng-click="$ctrl.startLoop()">Start</button>
+		<button ng-click="$ctrl.stopLoop()">Stop</button>
+		<label>{{$ctrl.bpm}} bpm
+			<input type="range" min="h4" max="200" ng-model="$ctrl.bpm" ng-change="$ctrl.setBpm()">
+		</label>
+	</div>
 </div>

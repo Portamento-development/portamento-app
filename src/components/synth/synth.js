@@ -7,8 +7,7 @@ export default {
     bindings: {
         currentUser: '<',
         userPatches: '<',
-        loadedPatch: '<',
-        currentUser: '<'
+        loadedPatch: '<'
     },
     controller
 };
@@ -55,7 +54,7 @@ function controller(patchService, sequenceService, userService, $window) {
         },
     };
 
-  this.$onInit = function() {
+    this.$onInit = function() {
         console.log(this.currentUser);
         if(this.loadedPatch) {
             this.patch = this.loadedPatch;
