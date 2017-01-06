@@ -10,9 +10,9 @@ export default {
     controller
 };
 
-controller.$inject = ['userService'];
+controller.$inject = ['userService', 'patchService'];
 
-function controller (userService) {
+function controller (userService, patchService) {
     this.styles = styles;
     this.isMe = false;
 
@@ -37,6 +37,7 @@ function controller (userService) {
             });
     };
 
+
     this.unfollow = () => {
         userService.getUserById(this.currentUser.id)
             .then(user => {
@@ -49,4 +50,9 @@ function controller (userService) {
             });
     };
 
+    this.remove = (patch) => {
+        patchService.remove(patch);
+        let removedPatch = this.userData.patchId.indexOf(patch);
+        this.userData.patchId.splice(removedPatch, 1);
+    };
 }

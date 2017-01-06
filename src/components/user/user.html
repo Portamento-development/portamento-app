@@ -6,7 +6,7 @@
     <div>
         <ul>
             <h3>Patches</h3> 
-            <li ng-repeat="patch in $ctrl.userData.patchId" ui-sref="patch({id: patch._id})">{{patch.name}}</li>
+            <li ng-repeat="patch in $ctrl.userData.patchId"> <a ui-sref="patch({id: patch._id})">{{patch.name}}</a> <button ng-click="$ctrl.remove(patch._id)">Delete</button></li>
         </ul>
         <ul>
             <h3>Users Followed</h3>

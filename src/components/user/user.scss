@@ -5,6 +5,10 @@
     flex-direction: column;
     text-align: center;
 
+    h2 {
+        margin-bottom: 0.2em;
+    }
+
     div {
         display: flex;
         justify-content: space-around;
@@ -16,6 +20,17 @@
         text-align: left;
         padding-left: 0;
         margin: 0;
+
+        li {
+            padding-top: 0.2em;
+            padding-bottom: 0.2em;
+            font-size: 0.9em;
+            border-bottom: 1px solid #eee;
+        }
+
+        li:hover {
+            cursor: pointer;
+        }
     }
 
 }
