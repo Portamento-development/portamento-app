@@ -1,0 +1,16 @@
+@import 'colors';
+
+button {
+    color: #000;
+    background-color: #fff;
+    border-radius: 3px;
+    font-size: 0.7em;
+    border: 2px solid $border-color;
+    margin: 0.5em auto;
+    }
+
+button:active {
+    background-color: #555;
+    color: #fff;
+    border-color: #fff;
+}

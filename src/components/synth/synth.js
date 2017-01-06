@@ -18,7 +18,6 @@ controller.$inject = ['patchService', 'sequenceService', 'userService', '$window
 function controller(patchService, sequenceService, userService, $window) {
     const doc = $window.document;
 
-    //binds key events to document level
     this.$onInit = () => {
         console.log('user patches', this.userPatches);
 
@@ -28,7 +27,7 @@ function controller(patchService, sequenceService, userService, $window) {
             console.log(this.patch);
             this.loadSequence(this.patch._id);
         }
-
+      
         doc.addEventListener('keydown', this.keyDownHandler);
         doc.addEventListener('keyup', this.keyUpHandler);
     };
@@ -97,7 +96,7 @@ function controller(patchService, sequenceService, userService, $window) {
                 user.patchId.push(this.patchId);
                 return user;
             })
-            .then(user => userService.updateUserPatches(user._id, user));
+            .then(user => userService.updateUser(user._id, user));
 
         this.patchSaved = true;
     };
@@ -106,15 +105,21 @@ function controller(patchService, sequenceService, userService, $window) {
         if(!this.patch.votes) this.patch.votes = 0;
         this.patch.votes += 1;
         patchService.update(this.patch._id, this.patch)
-            .then(res => console.log(res));
+            .then(res => console.log(res))
+            .catch(error => console.log('error at upvoting', error));
     };
 
     this.favorite = () => {
         if(!this.patch.favorites) this.patch.favorites = 0;
         this.patch.favorites += 1;
         patchService.update(this.patch._id, this.patch)
-            .then(res => {
-                console.log(res);
+            .then(() => {
+                userService.getUserById(this.currentUser.id)
+                    .then(user => {
+                        user.favoriteId.push(this.patch._id);
+                        console.log('user', user);
+                        userService.updateUser(this.currentUser.id, user);
+                    });
             });
     };
 
@@ -269,6 +274,10 @@ function controller(patchService, sequenceService, userService, $window) {
     this.setFilter = function(freq, type) {
         const filter = new Tone.Filter(freq, type);
         this.synth['filter'] = filter;
+    };
+
+    this.unFocus = function($event) {
+        $event.target.blur();
     };
 
     let fired = false;
