@@ -240,7 +240,8 @@ function controller(patchService, sequenceService, userService, $window) {
         }
     ];
    
-    this.filter = new Tone.Filter(200, 'lowpass').toMaster();
+    this.filter = new Tone.Filter().toMaster();
+    this.combFilter = new Tone.FeedbackCombFilter(0, 0).toMaster();
 
     this.synth = new Tone.PolySynth(6, Tone.Synth, {
         'oscillator': {
@@ -249,7 +250,7 @@ function controller(patchService, sequenceService, userService, $window) {
         }
     });
 
-    this.synth.chain(this.filter, Tone.Master);
+    this.synth.chain(this.filter, this.combFilter, Tone.Master);
 
     //trying to hook up filter
     // this.synth.connect(filter);

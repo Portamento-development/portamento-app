@@ -25,27 +25,32 @@
 
 		<div id="envelope"  class="panel-div" ng-mouseup="$ctrl.unFocus($event)">
 			<h4>Envelope:</h4>
-
-				<label>Attack
-					<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.attack" ng-change="$ctrl.synth.set('envelope', {attack: $ctrl.patch.settings.envelope.attack})">{{$ctrl.patch.settings.envelope.attack}}
-				</label>
-				<label>Decay
-					<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.decay" ng-change="$ctrl.synth.set('envelope', {decay: $ctrl.patch.settings.envelope.decay})">{{$ctrl.patch.settings.envelope.decay}}
-				</label>
-				<label>Sustain
-					<input type="range" min="0" max="1"  step="0.1" ng-model="$ctrl.patch.settings.envelope.sustain" ng-change="$ctrl.synth.set('envelope', {sustain: $ctrl.patch.settings.envelope.sustain})">{{$ctrl.patch.settings.envelope.sustain}}
-				</label>
-				<label>Release
-					<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.release" ng-change="$ctrl.synth.set('envelope', {release: $ctrl.patch.settings.envelope.release})">{{$ctrl.patch.settings.envelope.release}}
-				</label>
-
+				Attack: {{$ctrl.patch.settings.envelope.attack}}
+				<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.attack" ng-change="$ctrl.synth.set('envelope', {attack: $ctrl.patch.settings.envelope.attack})">
+				Decay: {{$ctrl.patch.settings.envelope.decay}}
+				<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.decay" ng-change="$ctrl.synth.set('envelope', {decay: $ctrl.patch.settings.envelope.decay})">
+				Sustain: {{$ctrl.patch.settings.envelope.sustain}}
+				<input type="range" min="0" max="1"  step="0.1" ng-model="$ctrl.patch.settings.envelope.sustain" ng-change="$ctrl.synth.set('envelope', {sustain: $ctrl.patch.settings.envelope.sustain})">
+				Release: {{$ctrl.patch.settings.envelope.release}}
+				<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.release" ng-change="$ctrl.synth.set('envelope', {release: $ctrl.patch.settings.envelope.release})">
 		</div>
-		<div>
-			<label>Filter Type: {{filterType}}</label>
-			<input type="radio" value="highpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">
-			<input type="radio" value="lowpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">
-			<input type="radio" value="bandpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">
-		</div>
+		<!--<div>-->
+			<div class="panel-div">
+				<h4>Filter type:</h4>
+				<label><input type="radio" value="lowpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Lowpass</label>
+				<label><input type="radio" value="bandpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Bandpass</label>
+				<label><input type="radio" value="highpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Highpass</label>
+				<label><input type="radio" value="allpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Allpass</label>
+			</div>
+			<div class="panel-div" id="filter-control">
+				<h4>Filter Control:</h4>
+				Frequency: {{filterFreq}}<input min="200" max="5000" step="100" type="range" value="filterFreq" ng-model="filterFreq" ng-change="$ctrl.filter.set('frequency', filterFreq)">
+				Q: {{filterQ}}<input type="range" min="1" max="20" step="0.5" value="Q" ng-model="filterQ" ng-change="$ctrl.filter.set('Q', filterQ)">
+				<h4>Comb Filter:</h4>
+				Comb Filter Delay: {{combFilterDelay}}<input type="range" min="0.1" max="1" step="0.1" value="combFilterDelay" ng-model="combFilterDelay" ng-change="$ctrl.combFilter.set('delayTime', combFilterDelay)">
+				Comb Filter Resonance: {{filterResonance}}<input type="range" min="0.1" max="1" step="0.1" value="filterResonance" ng-model="filterResonance" ng-change="$ctrl.combFilter.set('resonance', filterResonance)">
+			</div>
+		<!--</div>-->
 		<div id="panel-right" class="panel-div">
 			<h4>Waveform:</h4>
 			<div id="waveform">
@@ -56,8 +61,8 @@
 				{{$ctrl.patch.settings.wave}}
 			</div>
 			<div id="portamento">
-				<label>Portamento</label>
-				<input type="range" min="0" max="2" step="0.1" ng-model="$ctrl.patch.settings.portamento" ng-change="$ctrl.synth.set('portamento', $ctrl.patch.settings.portamento)">{{$ctrl.patch.settings.portamento}}
+				<h4>Portamento: </h4>{{$ctrl.patch.settings.portamento}}
+				<input type="range" min="0" max="2" step="0.1" ng-model="$ctrl.patch.settings.portamento" ng-change="$ctrl.synth.set('portamento', $ctrl.patch.settings.portamento)">
 			</div>
 		</div>
 	</div>
