@@ -74,16 +74,21 @@
         height: 30px;
         width: 30px;
         margin-bottom: 4px;
-        background-color: rgba(255,0,0,.5);
+        background-color: red;
+        box-shadow: inset rgba(128, 0, 0, 0.2) 0 -1px 1px 1px, inset #cc0000 0 -1px 9px, inset #ff3333 0 2px 14px;
+        color: transparent;
     }
 
     .selected {
-        background-color: red; 
+        background-color: blue; 
+        color: transparent;
+        box-shadow: inset rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #006 0 -1px 9px, inset #3F8CFF 0 2px 14px;
     };
 
-    .not-selected {
-        background-color: rgba(255,0,0,.5);
-    }
+    // .not-selected {
+    //     background-color: rgba(255,0,0,.5);
+    //     color: rgba(255,0,0,.5);
+    // }
 
     #sequencer {
         display: flex;
