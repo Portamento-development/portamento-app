@@ -326,8 +326,8 @@ function controller(patchService, sequenceService, userService, $window) {
     const fired = {};
 
     this.keyDown = function($event) {
-        // console.log($event.keyCode);
-        if ($event.target.tagName.toLowerCase() === 'input') return;
+        const target = $event.target;
+        if (target.tagName.toLowerCase() === 'input' && target.type === 'text') return;
         if ($event.altKey || $event.ctrlKey || $event.metaKey) return;
         if (!fired[$event.keyCode]) {
             fired[$event.keyCode] = true;
