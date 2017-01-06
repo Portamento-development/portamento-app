@@ -26,6 +26,13 @@
             padding-bottom: 0.2em;
             font-size: 0.9em;
             border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+
+            button {
+                font-size: 0.6em;
+                margin: 0.5em;
+            }
         }
     }
     a {
