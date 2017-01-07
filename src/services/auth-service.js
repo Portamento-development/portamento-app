@@ -24,7 +24,6 @@ export default function authService(userService, tokenService, $http, apiUrl, $s
                     tokenService.set(result.data.token);
                     currentUser.id = result.data.id;
                     currentUser.username = result.data.username;
-                    console.log(currentUser);
                     return currentUser;
                 })
                 .catch(err => {

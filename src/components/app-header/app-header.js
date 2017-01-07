@@ -25,7 +25,6 @@ function controller($state, authService) {
         if (this.action === 'signup') {
             authService.signup(this.credentials)
                 .then(res => {
-                    console.log('signed up as', res);
                     this.currentUser = res;
                     this.badUsername = false;
                     $state.reload('home');
@@ -36,7 +35,6 @@ function controller($state, authService) {
         } else if (this.action === 'signin') {
             authService.signin(this.credentials)
                 .then(res => {
-                    console.log('signed in as', res);
                     this.currentUser = res;
                     this.badSignin = false;
 
@@ -50,7 +48,6 @@ function controller($state, authService) {
     };
 
     this.logout = () => {
-        console.log('logging out');
         authService.logout();
         this.currentUser = null;
         $state.reload('home');

@@ -13,7 +13,6 @@ function controller(auth, user) {
     this.$onInit = () => {
         if(auth.isAuthenticated()) {
             this.currentUser = user.getCurrent();
-            console.log('current user: ', this.currentUser);
         }
     };
 
