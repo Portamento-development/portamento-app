@@ -79,7 +79,6 @@ function controller(patchService, sequenceService, userService, $window) {
             },
             portamento: this.patch.settings.portamento
         });
-        // this.loadSequence(this.patch._id);
     };
 
     this.savePatch = () => {
@@ -121,11 +120,10 @@ function controller(patchService, sequenceService, userService, $window) {
     this.vote = (number) => {
         if(this.upVoted === false) this.upVoted = true;
         else this.upVoted = false;
-        console.log(this.upVoted, this.patchSaved);
         if(!this.patch.votes) this.patch.votes = 0;
         this.patch.votes += number;
         patchService.update(this.patch._id, this.patch)
-            .then(res => console.log(res))
+            // .then(res => console.log(res))
             .catch(error => console.log('error at upvoting', error));
     };
 
@@ -133,14 +131,11 @@ function controller(patchService, sequenceService, userService, $window) {
         this.favorited = true;
         if(!this.patch.favorites) this.patch.favorites = 0;
         this.patch.favorites += 1;
-        console.log(this.patch);
         patchService.update(this.patch._id, this.patch)
             .then(res => {
                 this.favPatches.push(res);
-                console.log('in first then');
                 userService.getUserById(this.currentUser.id)
                     .then(user => {
-                        console.log('user', user);
                         user.favoriteId.push(this.patch._id);
                         userService.updateUser(this.currentUser.id, user);
                     });
@@ -267,25 +262,17 @@ function controller(patchService, sequenceService, userService, $window) {
         else this.sequenceMatrix[col][row] = 1;
     };
 
-    this.toggleSelect = function() {
-        console.log('hit');
-    };
-
     this.sequenceMatrix = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1],[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1],[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1],[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];
 
     const notes = ['F#3', 'E3', 'C#3', 'A3'];
-    // let lastNote = null;
 
     var loop = new Tone.Sequence((time, col) => {
-        // if(lastNote) {
         this.synth.releaseAll();
-        // }
         let column = this.sequenceMatrix[col];
         for(var i = 0; i < column.length; i++) {
             if(column[i] === 1) {
                 var vel = Math.random() * 0.5 + 0.5;
                 this.synth.triggerAttack(notes[i], time, vel);
-                // lastNote = notes[i];
             }
         }
     }, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], '16n');
@@ -336,7 +323,6 @@ function controller(patchService, sequenceService, userService, $window) {
         if (!fired[$event.keyCode]) {
             fired[$event.keyCode] = true;
             $event.preventDefault();
-            //console.log('2nd', )
             const note = this.notes.find(n => n.keyCode === $event.keyCode);
             this.noteOn(note.note);
         }
