@@ -1,0 +1,111 @@
+@import 'colors';
+
+:local(.about) {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    #top {
+        font-size: 0.8em;
+    }
+
+    #instructions,
+    #aboutus {
+        padding-bottom: 1em;
+        border-bottom: 1px solid #eee;
+    }
+
+    #instructions {
+        h3, h4, h5, p {
+            margin: 0.5em;
+        }
+
+        h3 {
+            opacity: 0.9;
+        }
+
+        h4 {
+            opacity: 0.8;
+        }
+
+        h5 {
+            opacity: 0.7;
+        }
+    }
+
+    #bios {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+
+            p {
+                font-size: 0.8em;
+                text-align: left;
+                margin-bottom: 0.3em;
+            }
+
+    }
+
+    div {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+
+        p {
+            text-align: left;
+        }
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+
+        li {
+            flex-basis: 10em;
+            padding: 0.5em;
+
+        }
+    }
+
+    img {
+        width: 80px;
+        border-radius: 2px;
+    }
+
+    a {
+        font-weight: 700;
+        text-decoration: none;
+        color: $secondary-color;
+    }
+
+    a:hover {
+        color: $hover-dark;
+    }
+
+    .userlink {
+        color: $third-color;
+    }
+
+    .userlink:hover {
+        color: $hover-alt;
+    }
+
+    .author-links {
+        font-size: 0.75em;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+
+
+        li {
+            padding: 0;
+
+            a {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+
+}

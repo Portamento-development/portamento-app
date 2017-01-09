@@ -1,0 +1,123 @@
+@import 'colors';
+
+:local(.synth) {
+
+    display: flex;
+    flex-direction: column;
+    margin: 0.5em;
+    padding: 0.5em;
+    border: 2px solid $border-color;
+    border-radius: 5px;
+
+    #panel {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        font-size: 0.6em;
+        padding-top: 0.5em;
+    }
+
+    .panel-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        border-right: 1px solid #eee;
+        padding-right: 2em;
+        margin-bottom: 1em;
+    }
+
+    .panel-div:last-of-type {
+        border: none;
+    }
+
+    .keyboard,
+    #sequencer,
+    #seq-controls {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .keyboard {
+
+        ul {
+            display: flex;
+            list-style-type: none;
+            font-size: 0.7em;
+            padding-left: 0;
+
+            li {
+                text-align: center;
+                width: 35px;
+                height: 100px;
+                border: 2px solid black;
+                display: inline-block;
+            }
+
+        }
+
+        li:nth-child(12n+2),
+        li:nth-child(12n+4),
+        li:nth-child(12n+7),
+        li:nth-child(12n+9),
+        li:nth-child(12n+11) {
+            background-color: black;
+            width: 20px;
+            color: white;
+        }
+
+        li:nth-child(12n+6),
+        li:nth-child(12n+13) {
+            border-left: none;
+        }
+    }
+
+    .column {
+        display: inline-block;
+        padding: 0;
+        margin: 2px;
+    }
+
+    .cell {
+        list-style: none;
+        text-align: center;
+        height: 30px;
+        width: 30px;
+        margin-bottom: 4px;
+        background-color: #aaa;
+        box-shadow: inset rgba(128, 0, 0, 0.2) 0 -1px 1px 1px, inset #444 0 -1px 9px, inset #bbb 0 2px 14px;
+        color: transparent;
+    }
+
+    .selected {
+        background-color: #3fecff; 
+        opacity: 0.2;
+        color: transparent;
+        box-shadow: inset rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #513fff 0 -1px 9px, inset #3F8CFF 0 2px 14px;
+    };
+
+    #sequencer {
+        display: flex;
+    }
+
+    #seq-controls {
+        font-size: 0.8em;
+    }
+
+    #seq-controls label {
+        margin-left: 5em;
+    }
+
+    h4 {
+        margin: 0 0 0.5em 0;
+    }
+
+    #portamento {
+        margin-top: 0.5em;
+    }
+
+    .feedback {
+        margin: 0;
+        color: #01AC20;
+    }
+
+}

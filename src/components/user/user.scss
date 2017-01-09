@@ -1,0 +1,55 @@
+@import 'colors';
+
+:local(.user) {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    h2 {
+        margin-bottom: 0.2em;
+    }
+
+    div {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    ul {
+        list-style: none;
+        text-align: left;
+        padding-left: 0;
+        margin: 0;
+
+        li {
+            padding-top: 0.2em;
+            padding-bottom: 0.2em;
+            font-size: 0.9em;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+
+            button {
+                font-size: 0.6em;
+                margin: 0 0.2em;
+            }
+        }
+    }
+    a {
+        font-weight: 400;
+        text-decoration: none;
+        color: $secondary-color;
+    }
+
+    a:hover {
+        color: $hover-dark;
+    }
+
+    .userlink {
+        color: $third-color;
+    }
+
+    .userlink:hover {
+        color: $hover-alt;
+    }
+}

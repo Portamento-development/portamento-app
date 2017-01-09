@@ -1,0 +1,20 @@
+<section ng-class="$ctrl.styles.user">
+    <h2>User Profile: {{$ctrl.userData.username}}</h2>
+    <button ng-if="!$ctrl.isMe && !$ctrl.followed" ng-click="$ctrl.follow()">Follow</button>
+    <button ng-if="!$ctrl.isMe && $ctrl.followed" ng-click="$ctrl.unfollow()">Unfollow</button>
+
+    <div>
+        <ul>
+            <h3>Patches</h3> 
+            <li ng-repeat="patch in $ctrl.userData.patchId"> <a ui-sref="patch({id: patch._id})">{{patch.name}}</a> <button ng-if="$ctrl.isMe" ng-click="$ctrl.remove(patch._id)">Delete</button></li>
+        </ul>
+        <ul>
+            <h3>Users Followed</h3>
+            <li ng-repeat="user in $ctrl.userData.followingId"><a class="userlink" ui-sref="user({id: user._id})">{{user.username}}</a></li>
+        </ul>
+        <ul>
+            <h3>Favorite Patches</h3>
+            <li ng-repeat="fav in $ctrl.userData.favoriteId"><a ui-sref="patch({id: fav._id})">{{fav.name}}</a></li>
+        </ul>
+    </div>
+</section>

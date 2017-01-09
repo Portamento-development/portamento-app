@@ -1,0 +1,34 @@
+<section ng-class="$ctrl.styles.header">
+    <h1>Portamento</h1>
+    <div id="header-menu">
+        <a ng-if="$ctrl.currentUser.id" ui-sref="user({id: $ctrl.currentUser.id})">User Profile</a>
+        <a ui-sref="social">Community</a>
+        <a ui-sref="home">Synth</a>
+        <a ui-sref="about">About</a>
+    </div>
+    <div>
+        <form ng-if="!$ctrl.currentUser.id">
+            <div>
+                <label>
+                    <input name="login" type="radio" ng-model="$ctrl.action" value="signin">
+                    Sign in
+                </label>
+                <label>
+                    <input name="login" type="radio" ng-model="$ctrl.action" value="signup">
+                    Sign up
+                </label>
+            </div>
+            <div>
+                <label>Username: <input ng-model="$ctrl.username"></label>
+                <label>Password: <input type="password" ng-model="$ctrl.password"></label>
+                <button ng-click="$ctrl.login()">Submit</button>
+                <p ng-if="$ctrl.badSignin">Username or password invalid.</p>
+                <p ng-if="$ctrl.badUsername">Username already taken.</p>
+            </div>
+        </form>
+        <div ng-if="$ctrl.currentUser.id">
+            <span class="message">Signed in as <a ui-sref="user({id: $ctrl.currentUser.id})">{{ $ctrl.currentUser.username }}</a></span>
+            <button ng-click="$ctrl.logout()">Log Out</button>
+        </div>
+    </div>
+</section>

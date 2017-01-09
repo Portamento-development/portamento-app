@@ -1,0 +1,86 @@
+<div ng-class="$ctrl.styles.synth">
+	<div id="panel">
+
+		<div id="panel-left" class="panel-div">
+			<h4>Preset:</h4>
+			<div id="Title">{{$ctrl.patch.name}}</div>
+			<form id="save" ng-submit="$ctrl.savePatch()">
+				<input type="text" required ng-model="$ctrl.patch.name" ng-change="$ctrl.saveFeedback = false">
+				<button>Save</button>
+				<p ng-if="$ctrl.loginPrompt"> Sign in or sign up to save your setting and connect with other users</p>
+				<p class="feedback" ng-if="$ctrl.saveFeedback"><span>&#10003;</span> Patch saved!</p>
+			</form>
+
+			<div ng-if="$ctrl.currentUser">
+				<button ng-if="$ctrl.patchSaved && $ctrl.upVoted === false" ng-click="$ctrl.vote(1)">upVote</button>
+				<button ng-if="$ctrl.patchSaved && $ctrl.upVoted === true" ng-click="$ctrl.vote(-1)">downVote</button>
+
+				<button ng-if="$ctrl.patchSaved && $ctrl.favorited === false" ng-click="$ctrl.favorite()">Favorite</button>
+				<button ng-if="$ctrl.patchSaved && $ctrl.favorited === true" ng-click="$ctrl.unfavorite()">Unfavorite</button>
+			</div>
+
+			<label>My patches:</label>
+			<select ng-options="patch.name for patch in $ctrl.userPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth(); $ctrl.saveFeedback = false"></select>
+			<label>Favorite patches:</label>
+			<select ng-options="favPatch.name for favPatch in $ctrl.favPatches" ng-model="$ctrl.patch" ng-change="$ctrl.setSynth(); $ctrl.saveFeedback = false"></select>
+		</div>
+
+		<div id="envelope"  class="panel-div" ng-mouseup="$ctrl.unFocus($event)">
+			<h4>Envelope:</h4>
+				Attack: {{$ctrl.patch.settings.envelope.attack}}
+				<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.attack" ng-change="$ctrl.synth.set('envelope', {attack: $ctrl.patch.settings.envelope.attack})">
+				Decay: {{$ctrl.patch.settings.envelope.decay}}
+				<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.decay" ng-change="$ctrl.synth.set('envelope', {decay: $ctrl.patch.settings.envelope.decay})">
+				Sustain: {{$ctrl.patch.settings.envelope.sustain}}
+				<input type="range" min="0" max="1"  step="0.1" ng-model="$ctrl.patch.settings.envelope.sustain" ng-change="$ctrl.synth.set('envelope', {sustain: $ctrl.patch.settings.envelope.sustain})">
+				Release: {{$ctrl.patch.settings.envelope.release}}
+				<input type="range" min="0" max="10" step="0.1" ng-model="$ctrl.patch.settings.envelope.release" ng-change="$ctrl.synth.set('envelope', {release: $ctrl.patch.settings.envelope.release})">
+		</div>
+		<div id="panel-right" class="panel-div">
+			<h4>Waveform:</h4>
+			<div id="waveform">
+				<input type="radio" value="pwm" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
+				<input type="radio" value="triangle" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
+				<input type="radio" value="square" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
+				<input type="radio" value="sawtooth" ng-model="$ctrl.patch.settings.wave" ng-change="$ctrl.synth.set({oscillator: {type: $ctrl.patch.settings.wave}})">
+				{{$ctrl.patch.settings.wave}}
+			</div>
+			<div id="portamento">
+				<h4>Portamento: </h4>{{$ctrl.patch.settings.portamento}}
+				<input type="range" min="0" max="2" step="0.1" ng-model="$ctrl.patch.settings.portamento" ng-change="$ctrl.synth.set('portamento', $ctrl.patch.settings.portamento)">
+			</div>
+		</div>
+		<div class="panel-div" id="filter-control">
+			<h4>Filter Control:</h4>
+			Frequency: {{filterFreq}}<input min="200" max="5000" step="100" type="range" value="filterFreq" ng-model="filterFreq" ng-change="$ctrl.filter.set('frequency', filterFreq)">
+			Q: {{filterQ}}<input type="range" min="1" max="20" step="0.5" ng-init="filterQ=1" value="Q" ng-model="filterQ" ng-change="$ctrl.filter.set('Q', filterQ)">
+			<h4>Comb Filter:</h4>
+			Comb Filter Delay: {{combFilterDelay}}<input type="range" min="0" max="1" step="0.1" ng-init="combFilterDelay=0" value="combFilterDelay" ng-model="combFilterDelay" ng-change="$ctrl.combFilter.set('delayTime', combFilterDelay)">
+			Comb Filter Resonance: {{filterResonance}}<input type="range" min="0" max="1" step="0.1" ng-init="filterResonance=0" value="filterResonance" ng-model="filterResonance" ng-change="$ctrl.combFilter.set('resonance', filterResonance)">
+		</div>
+		<div class="panel-div">
+			<h4>Filter type:</h4>
+			<label><input type="radio" value="lowpass" ng-checked="true" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Lowpass</label>
+			<label><input type="radio" value="bandpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Bandpass</label>
+			<label><input type="radio" value="highpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Highpass</label>
+			<label><input type="radio" value="allpass" ng-model="filterType" ng-change="$ctrl.filter.set('type', filterType)">Allpass</label>
+		</div>
+	</div>
+	<div class="keyboard">
+		<ul>
+			<li ng-repeat="note in $ctrl.notes" ng-mousedown="$ctrl.noteOn(note.note)" ng-mouseup="$ctrl.noteOff(note.note)">{{note.note}}</li>
+		</ul>
+	</div>
+	<div id="sequencer">
+		<ul class="column" ng-repeat="array in $ctrl.sequenceMatrix">
+			<li ng-class="{cell: true, selected: value}" ng-repeat="value in array track by $index" ng-click="$ctrl.updateMatrix($parent.$index, $index);">{{value}}</li>
+		</ul>
+	</div>
+	<div id="seq-controls">
+		<button ng-click="$ctrl.startLoop()">Start</button>
+		<button ng-click="$ctrl.stopLoop()">Stop</button>
+		<label>{{$ctrl.bpm}} bpm
+			<input type="range" min="30" max="200" ng-model="$ctrl.bpm" ng-change="$ctrl.setBpm()">
+		</label>
+	</div>
+</div>
