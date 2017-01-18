@@ -319,6 +319,7 @@ function controller(patchService, sequenceService, userService, $window) {
         const target = $event.target;
         if (target.tagName.toLowerCase() === 'input' && target.type === 'text') return;
         if (target.tagName.toLowerCase() === 'input' && target.type === 'password') return;
+        if ($event.altKey || $event.ctrlKey || $event.metaKey) return;
         if (!fired[$event.keyCode]) {
             fired[$event.keyCode] = true;
             $event.preventDefault();
@@ -328,6 +329,7 @@ function controller(patchService, sequenceService, userService, $window) {
     };
 
     this.keyUp = function($event) {
+        if (($event.keyCode === 91) || ($event.keyCode === 18) || ($event.keyCode === 17) || ($event.keyCode === 93)) return;
         fired[$event.keyCode] = false;
         $event.preventDefault();
         //following line works
