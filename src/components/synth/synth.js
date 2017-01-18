@@ -324,7 +324,7 @@ function controller(patchService, sequenceService, userService, $window) {
             fired[$event.keyCode] = true;
             $event.preventDefault();
             const note = this.notes.find(n => n.keyCode === $event.keyCode);
-            this.noteOn(note.note);
+            if(note) this.noteOn(note.note);
         }
     };
 
@@ -334,7 +334,7 @@ function controller(patchService, sequenceService, userService, $window) {
         $event.preventDefault();
         //following line works
         const note = this.notes.find(n => n.keyCode === $event.keyCode);
-        this.noteOff(note.note);
+        if(note) this.noteOff(note.note);
     };
 
     this.keyDownHandler = this.keyDown.bind(this);
