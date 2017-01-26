@@ -266,12 +266,12 @@ function controller(patchService, sequenceService, userService, $window) {
 
     const notes = ['F#3', 'E3', 'C#3', 'A3'];
 
-    var loop = new Tone.Sequence((time, col) => {
+    let loop = new Tone.Sequence((time, col) => {
         this.synth.releaseAll();
         let column = this.sequenceMatrix[col];
-        for(var i = 0; i < column.length; i++) {
+        for(let i = 0; i < column.length; i++) {
             if(column[i] === 1) {
-                var vel = Math.random() * 0.5 + 0.5;
+                let vel = Math.random() * 0.5 + 0.5;
                 this.synth.triggerAttack(notes[i], time, vel);
             }
         }
@@ -324,7 +324,7 @@ function controller(patchService, sequenceService, userService, $window) {
             fired[$event.keyCode] = true;
             $event.preventDefault();
             const note = this.notes.find(n => n.keyCode === $event.keyCode);
-            this.noteOn(note.note);
+            if(note) this.noteOn(note.note);
         }
     };
 
@@ -334,7 +334,7 @@ function controller(patchService, sequenceService, userService, $window) {
         $event.preventDefault();
         //following line works
         const note = this.notes.find(n => n.keyCode === $event.keyCode);
-        this.noteOff(note.note);
+        if(note) this.noteOff(note.note);
     };
 
     this.keyDownHandler = this.keyDown.bind(this);
